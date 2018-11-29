@@ -33,7 +33,7 @@
             <div class="card-group">
                 <div class="card p-4" STYLE="opacity: 0.9;" >
                     <div class="card-body" >
-                        <form action="/login" method="post" enctype="multipart/form-data"></form>
+                        <form action="/login" method="post" enctype="multipart/form-data" class="needs-validation" id="saveForm">
                         <h1><i class="fa cui-yen fa-lg mt-4" style="color:goldenrod"></i> 校园兼职平台</h1>
                         <p class="text-muted">使用用户名和密码登录</p>
                         <div class="input-group mb-3">
@@ -42,7 +42,10 @@
                       <i class="icon-user"></i>
                     </span>
                             </div>
-                            <input class="form-control" type="text" placeholder="用户名" size="12">
+                            <input class="form-control" type="text" placeholder="用户名" size="12" name="name" required>
+                             <div class="invalid-feedback">
+                                    用户名不能为空！
+                                </div>
                         </div>
                         <div class="input-group mb-4">
                             <div class="input-group-prepend">
@@ -50,27 +53,34 @@
                       <i class="icon-lock"></i>
                     </span>
                             </div>
-                            <input class="form-control" type="password" placeholder="密码">
+                            <input class="form-control" type="password" placeholder="密码" name="password" required>
+                             <div class="invalid-feedback">
+                                    密码不能为空！
+                                </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <button class="btn btn-primary px-4" type="button">登录</button><br>
+                                <button class="btn btn-primary px-4" type="button" onclick="loginOn()">登录</button><br>
                             </div>
-                             <div>
+                            <div>
                             <span><a>使用第三方登录 &nbsp;&nbsp;&nbsp;</a></span>
-                             </div>
-                    <span>
+                            <span>
                     <button class="btn btn-primary  btn-sm" type="button"><i class="fa fa-qq small" ></i></button>
                     <button class="btn btn-success btn-sm   " type="button"><i class="fa fa-wechat small"></i></button>
                     <button class="btn btn-danger btn-sm  " type="button"><i class="fa fa-weibo small"></i></button>
-                  </span>
-                  <div class="col-6 text-right">
-                    <button class="btn btn-link px-0" type="button">忘记密码?</button>
-                      <button class="btn btn-link px-0" type="button">立即注册</button>
+                            </span>
+                            </div>
+                  <div class="col-6 text-right" >
+                    <button class="btn btn-link px-0" type="button" style="float:left;">忘记密码?</button>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <button class="btn btn-link px-0" type="button" style="float:right;">立即注册</button>
+                  </div>
+                        </div>
+                            </form>
                   </div>
 
-
-
+              </div>
+            </div>
         </div>
     </div>
 </div>
@@ -81,6 +91,14 @@
 <script src="vendors/pace-progress/js/pace.min.js"></script>
 <script src="vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
 <script src="vendors/@coreui/coreui/js/coreui.min.js"></script>
-
+<script>
+   function loginOn(){
+        var form = document.getElementById('saveForm');
+        if (form.checkValidity() === true) {
+           return ;
+        }
+        form.classList.add('was-validated');
+    }
+</script>
 </body>
 </html>
