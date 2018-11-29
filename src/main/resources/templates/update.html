@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/test/update_action" method="get">
+    <table th:each="user : ${user}">
+        <input type="hidden" name="id" th:value="${user.id}">
+        <tr >
+            <td>用户名:<input type="text" id="name" name="name" th:value="${user.name}"/></td>
+        </tr>
+        <tr>
+            <td>密码:<input type="text" id="password" name="password" th:value="${user.password}"/></td>
+        </tr>
+        <tr>
+            <td>邮箱:<input type="text" id="email" name="email" th:value="${user.email}"/></td>
+        </tr>
+        <tr>
+            <td>出生日期:<input type="text" id="birthday" name="birthday" th:value="${user.birthday}"/></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="保存"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
