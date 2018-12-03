@@ -7,7 +7,9 @@ public class User {
     private String name;
     private String password;
     private String email;
-    private String birthday;
+    private String phone;
+    private String sex;
+    private Date createTime;
 
     public String getId() {
         return id;
@@ -33,6 +35,7 @@ public class User {
         this.password = password;
     }
 
+
     public String getEmail() {
         return email;
     }
@@ -41,11 +44,27 @@ public class User {
         this.email = email;
     }
 
-    public String getBirthday() {
-        return birthday;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

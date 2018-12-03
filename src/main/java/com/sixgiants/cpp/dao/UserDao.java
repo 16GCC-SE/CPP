@@ -2,6 +2,7 @@ package com.sixgiants.cpp.dao;
 
 import com.sixgiants.cpp.entity.User;
 import com.sixgiants.cpp.mapper.UserMapper;
+import com.sixgiants.cpp.util.UUIDutil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +20,7 @@ public class UserDao {
     }
 
     public void saveUser(User user){
+        user.setId(UUIDutil.getUUID());
         userMapper.saveUser(user);
     }
 

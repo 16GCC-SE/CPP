@@ -24,8 +24,8 @@
         <div class="col-md-6">
             <div class="card-group">
                 <div class="card p-4" STYLE="opacity: 0.95;" >
-                    <div class="card-body" style="padding:30px 50px;">
-                        <form action="/login" method="post" enctype="multipart/form-data"></form>
+                    <div class="card-body" style="padding:30px 50px;" >
+                        <form action="/test/register" method="post" enctype="multipart/form-data" class="needs-validation" id="registerForm" >
                         <div style="padding:10px 20px;"><h3> <i class="icons font-2xl  mt-4 cui-star"></i>欢迎加入校园兼职平台注册<i class="icons font-2xl  mt-4 cui-star"></i></h3></div>
                         <h8>请按情况认真填写以下信息：</h8>
 
@@ -35,7 +35,10 @@
                                     <i class="icon-user"></i>
                                 </span>
                             </div>
-                            <input class="form-control" type="text" placeholder="请输入用户名">
+                            <input class="form-control" type="text" name="name" placeholder="请输入用户名" required>
+                            <div class="invalid-feedback">
+                                用户名不能为空！
+                            </div>
                         </div>
 
 
@@ -46,7 +49,10 @@
                       <i class="icons cui-lock-unlocked"></i>
                     </span>
                             </div>
-                            <input class="form-control" type="password" placeholder="请输入密码">
+                            <input class="form-control" type="password" name="password" placeholder="请输入密码" required>
+                            <div class="invalid-feedback">
+                                密码不能为空！
+                            </div>
                         </div>
 
                         <div class="input-group mb-3">
@@ -55,7 +61,10 @@
                                     <i class="icons cui-lock-locked"></i>
                                 </span>
                             </div>
-                            <input class="form-control" type="password" placeholder="再次确认密码">
+                            <input class="form-control" type="password" name="rePassword" placeholder="再次确认密码" required>
+                            <div class="invalid-feedback">
+                                再次输入密码不能为空！
+                            </div>
                         </div>
 
                         <div class="input-group mb-3" >
@@ -64,7 +73,10 @@
                                     <i class="icons cui-envelope-closed"></i>
                                 </span>
                             </div>
-                            <input class="form-control" type="password" placeholder="请输入邮箱">
+                            <input class="form-control" type="text" name="email" placeholder="请输入邮箱" required>
+                            <div class="invalid-feedback">
+                                邮箱不能为空！
+                            </div>
                         </div>
 
                         <div class="input-group mb-3" >
@@ -73,7 +85,10 @@
                                     <i class="icons cui-phone"></i>
                                 </span>
                             </div>
-                            <input class="form-control" type="password" placeholder="请输入手机号">
+                            <input class="form-control" type="text" name="phone" placeholder="请输入手机号" required>
+                            <div class="invalid-feedback">
+                                手机号不能为空！
+                            </div>
                         </div>
 
                         <div class="form-group row">
@@ -88,13 +103,21 @@
                         </div>
 
 
-                        <div class="form-group row"><label for="stauts-active" class="col-sm-2 col-form-label">性别</label>
+                        <div class="form-group row">
+                            <label for="sex-male" class="col-sm-2 col-form-label">性别</label>
                             <div class="col-sm-10">
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" value="1" id="stauts-active" name="status" checked="checked" class="custom-control-input">
-                                    <label for="stauts-active" class="custom-control-label"><i class="icons cui-user"></i>男</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="radio" value="0" id="status-forbidden" name="status" class="custom-control-input">
-                                    <label for="status-forbidden" class="custom-control-label"><i class="icons cui-user-female"></i>女</label>
+                                    <input type="radio" value="男" id="sex-male" name="sex"  class="custom-control-input" checked>
+                                    <label for="sex-male" class="custom-control-label">
+                                        <i class="icons cui-user"></i>男
+                                    </label>
+                                </div>
+                                    <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" value="女" id="sex-female" name="sex" class="custom-control-input" >
+                                    <label for="sex-female" class="custom-control-label">
+                                        <i class="icons cui-user-female"></i>女
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -102,15 +125,18 @@
 
                         <div class="row">
                             <div class="col-6">
-                                <button class="btn btn-primary px-4" type="button" style="position:absolute; left:70%; right:50%;">立即注册</button><br>
+                                <button class="btn btn-primary px-4" type="submit" onclick="registerOn()" style="position:absolute; left:70%; right:50%;">立即注册</button><br>
                             </div>
                         </div>
+                        </form>
                     </div>
+
 
 
                 </div>
             </div>
         </div>
+
         <!-- CoreUI and necessary plugins-->
         <script src="vendors/jquery/js/jquery.min.js"></script>
         <script src="vendors/popper.js/js/popper.min.js"></script>
@@ -120,5 +146,15 @@
         <script src="vendors/@coreui/coreui/js/coreui.min.js"></script>
     </div>
 </div>
+
+<script>
+    function registerOn(){
+        var form = document.getElementById('registerForm');
+        if (form.checkValidity() === true) {
+            return ;
+        }
+        form.classList.add('was-validated');
+    }
+</script>
 </body>
 </html>

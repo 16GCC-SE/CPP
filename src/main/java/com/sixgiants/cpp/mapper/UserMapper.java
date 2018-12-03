@@ -11,12 +11,12 @@ public interface UserMapper {
     @Select("select * from users where name=#{name}")
     User findByName(String name);
 
-    @Select("insert into users(id,name,password,email,birthday) values(#{id},#{name},#{password},#{email},#{birthday})")
+    @Select("insert into users(id,name,password,email,phone,sex,createTime) values(#{id},#{name},#{password},#{email},#{phone},#{sex},#{createTime})")
     void saveUser(User user);
 
     @Select("select * from users where id=#{id}")
     User findById(String id);
 
-    @Select("update users set name=#{name},password=#{password},email=#{email},birthday=#{birthday} where id=#{id}")
+    @Select("update users set name=#{name},password=#{password},email=#{email},phone=#{phone},sex=#{sex} where id=#{id}")
     void updateUser(User user);
 }
