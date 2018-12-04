@@ -8,7 +8,6 @@
 * Licensed under MIT (https://coreui.io/license)
 -->
 
-<html lang="en">
 <head>
     <base href="./">
     <meta charset="utf-8">
@@ -28,7 +27,9 @@
     <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
 </head>
 <body class="app flex-row align-items-center" style="background-image: url('image/GZCC.jpg');background-position:center; background-repeat:no-repeat; " >
+
 <div class="container" >
+    <div class="animated fadeIn">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card-group">
@@ -43,7 +44,7 @@
                       <i class="icon-user"></i>
                     </span>
                             </div>
-                            <input class="form-control" type="text" placeholder="用户名" size="12" name="name" th:value="${user.name}" required>
+                            <input class="form-control" type="text" placeholder="用户名" size="12" name="name" th:value="${user.name}" id="username" required>
                              <div class="invalid-feedback">
                             用户名不能为空！
                         </div>
@@ -54,7 +55,7 @@
                       <i class="icon-lock"></i>
                     </span>
                             </div>
-                            <input class="form-control" type="password" placeholder="密码" name="password" required>
+                            <input class="form-control" type="password" placeholder="密码" name="password" id="password" required>
                              <div class="invalid-feedback">
                                     密码不能为空！
                                 </div>
@@ -84,7 +85,9 @@
             </div>
         </div>
     </div>
+    </div>
 </div>
+</body>
 <!-- CoreUI and necessary plugins-->
 <script src="vendors/jquery/js/jquery.min.js"></script>
 <script src="vendors/popper.js/js/popper.min.js"></script>
@@ -95,8 +98,28 @@
 <script>
    function loginOn(){
         var form = document.getElementById('loginForm');
+       var username = $('#username').val();
+       var password = $('#password').val();
    if (form.checkValidity() === true) {
-       return ;
+       $.ajax({
+           type: "POST",
+           url: "/users/confirm",
+           contentType: 'application/json',
+           data: JSON.stringify(username),
+           dataType: "json",
+           success: function (psw) {
+               if ( psw==password) {
+                   window.location.href="main.html";
+               }
+               else{
+                   showMessageModal("失败", "登录失败！密码错误！", "modal-danger");
+               }
+           },
+           error: function (msg) {
+               showMessageModal("失败", "后台数据处理失败！"+' '+msg, "modal-danger");
+           }
+       });
+       return;
    }
    form.classList.add('was-validated');
    }
@@ -104,6 +127,30 @@
    function register() {
        window.location.href="register.html";
    }
+   function showMessageModal(title, content, typeClass) {
+       $('#message-modal-title').text(title);
+       $('#message-modal-content').text(content);
+       $('#message-modal .modal-dialog').removeClass('modal-primary');
+       $('#message-modal .modal-dialog').removeClass('modal-success');
+       $('#message-modal .modal-dialog').removeClass('modal-warning');
+       $('#message-modal .modal-dialog').removeClass('modal-danger');
+       $('#message-modal .modal-dialog').removeClass('modal-info');
+       if ("modal-primary" === typeClass) {
+           $('#message-modal .modal-dialog').addClass('modal-primary');
+       }
+       if ("modal-success" === typeClass) {
+           $('#message-modal .modal-dialog').addClass('modal-success');
+       }
+       if ("modal-warning" === typeClass) {
+           $('#message-modal .modal-dialog').addClass('modal-warning');
+       }
+       if ("modal-danger" === typeClass) {
+           $('#message-modal .modal-dialog').addClass('modal-danger');
+       }
+       if ("modal-info" === typeClass) {
+           $('#message-modal .modal-dialog').addClass('modal-info');
+       }
+       $('#message-modal').modal('show');
+   }
 </script>
-</body>
 </html>
