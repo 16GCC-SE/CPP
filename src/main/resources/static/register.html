@@ -35,7 +35,7 @@
                                     <i class="icon-user"></i>
                                 </span>
                             </div>
-                            <input class="form-control" type="text" name="name" placeholder="请输入用户名" required>
+                            <input class="form-control" type="text" id="name" name="name" placeholder="请输入用户名" required>
                             <div class="invalid-feedback">
                                 用户名不能为空！
                             </div>
@@ -49,7 +49,7 @@
                       <i class="icons cui-lock-unlocked"></i>
                     </span>
                             </div>
-                            <input class="form-control" type="password" name="password" placeholder="请输入密码" required>
+                            <input class="form-control" type="password" id="password" name="password" placeholder="请输入密码" required>
                             <div class="invalid-feedback">
                                 密码不能为空！
                             </div>
@@ -61,7 +61,7 @@
                                     <i class="icons cui-lock-locked"></i>
                                 </span>
                             </div>
-                            <input class="form-control" type="password" name="rePassword" placeholder="再次确认密码" required>
+                            <input class="form-control" type="password" id="rePassword" name="rePassword" placeholder="再次确认密码" required>
                             <div class="invalid-feedback">
                                 再次输入密码不能为空！
                             </div>
@@ -73,7 +73,7 @@
                                     <i class="icons cui-envelope-closed"></i>
                                 </span>
                             </div>
-                            <input class="form-control" type="text" name="email" placeholder="请输入邮箱" required>
+                            <input class="form-control" type="text" id="email" name="email" placeholder="请输入邮箱" required>
                             <div class="invalid-feedback">
                                 邮箱不能为空！
                             </div>
@@ -85,7 +85,7 @@
                                     <i class="icons cui-phone"></i>
                                 </span>
                             </div>
-                            <input class="form-control" type="text" name="phone" placeholder="请输入手机号" required>
+                            <input class="form-control" type="text" id="phone" name="phone" placeholder="请输入手机号" required>
                             <div class="invalid-feedback">
                                 手机号不能为空！
                             </div>
@@ -136,18 +136,67 @@
                 </div>
             </div>
         </div>
-
-        <!-- CoreUI and necessary plugins-->
-        <script src="vendors/jquery/js/jquery.min.js"></script>
-        <script src="vendors/popper.js/js/popper.min.js"></script>
-        <script src="vendors/bootstrap/js/bootstrap.min.js"></script>
-        <script src="vendors/pace-progress/js/pace.min.js"></script>
-        <script src="vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
-        <script src="vendors/@coreui/coreui/js/coreui.min.js"></script>
     </div>
 </div>
 
+<div class="modal " id="message-modal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-danger" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="message-modal-title">信息</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body font-weight-bold" id="message-modal-content">
+                显示信息！
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<!-- CoreUI and necessary plugins-->
+<script src="vendors/jquery/js/jquery.min.js"></script>
+<script src="vendors/popper.js/js/popper.min.js"></script>
+<script src="vendors/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendors/pace-progress/js/pace.min.js"></script>
+<script src="vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
+<script src="vendors/@coreui/coreui/js/coreui.min.js"></script>
+
 <script>
+    function showMessageModal(title, content, typeClass) {
+        $('#message-modal-title').text(title);
+        $('#message-modal-content').text(content);
+        $('#message-modal .modal-dialog').removeClass('modal-primary');
+        $('#message-modal .modal-dialog').removeClass('modal-success');
+        $('#message-modal .modal-dialog').removeClass('modal-warning');
+        $('#message-modal .modal-dialog').removeClass('modal-danger');
+        $('#message-modal .modal-dialog').removeClass('modal-info');
+        if ("modal-primary" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-primary');
+        }
+        if ("modal-success" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-success');
+        }
+        if ("modal-warning" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-warning');
+        }
+        if ("modal-danger" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-danger');
+        }
+        if ("modal-info" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-info');
+        }
+        $('#message-modal').modal('show');
+    }
+
     function registerOn(){
         var form = document.getElementById('registerForm');
         if (form.checkValidity() === true) {
@@ -155,6 +204,95 @@
         }
         form.classList.add('was-validated');
     }
+
+    $("#name").blur(function () {
+        var username=$("#name").val();
+        if (username!='') {
+            $.ajax({
+                type: "POST",
+                url: "/test/confirmName",
+                async:true,
+                contentType: 'application/json',
+                data: username,
+                dataType: "json",
+                success:function (data) {
+                    if(data==1){
+                        //showMessageModal("成功","正常登陆","modal-success");
+                    } else{
+                        showMessageModal("失败","该用户已存在","modal-danger");
+                    }
+                }
+            })
+        }
+    })
+
+    $("#rePassword").blur(function () {
+        var password=$("#password").val();
+        var rePassword=$("#rePassword").val();
+        var message = [];
+        message[0] = password;
+        message[1] = rePassword;
+        if (password!='' && rePassword!='') {
+            $.ajax({
+                type: "POST",
+                url: "/test/confirmPassword",
+                async:true,
+                contentType: 'application/json;charset=utf-8',
+                data: JSON.stringify(message),
+                dataType: "text",
+                success:function (data) {
+                    if(data==1){
+                        // showMessageModal("成功","正常登陆","modal-success");
+                    }
+                    else{
+                        showMessageModal("失败","两次输入的密码不一致","modal-danger");
+                    }
+                }
+            })
+        }
+    })
+
+    $("#email").blur(function () {
+        var email=$("#email").val();
+        if (email!='') {
+            $.ajax({
+                type: "POST",
+                url: "/test/confirmEmail",
+                async:true,
+                contentType: 'application/json',
+                data: email,
+                dataType: "json",
+                success:function (data) {
+                    if(data==1){
+                        //showMessageModal("成功","正常登陆","modal-success");
+                    } else{
+                        showMessageModal("失败","邮箱格式错误","modal-danger");
+                    }
+                }
+            })
+        }
+    })
+
+    $("#phone").blur(function () {
+        var phone=$("#phone").val();
+        if (phone!='') {
+            $.ajax({
+                type: "POST",
+                url: "/test/confirmPhone",
+                async:true,
+                contentType: 'application/json',
+                data: phone,
+                dataType: "json",
+                success:function (data) {
+                    if(data==1){
+                        //showMessageModal("成功","正常登陆","modal-success");
+                    } else{
+                        showMessageModal("失败","手机号码格式错误","modal-danger");
+                    }
+                }
+            })
+        }
+    })
 </script>
 </body>
 </html>
