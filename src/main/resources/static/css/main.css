@@ -1,0 +1,134 @@
+/**{*/
+/*padding: 0;*/
+/*margin:0;*/
+/*text-decoration: none;*/
+/*color: black;*/
+/*list-style-type:none;*/
+/*}*/
+body{
+    background-color: white;
+}
+.table>tbody>tr>td{
+    border:none;
+}
+.Top{
+    background-color: #c8ced3;
+    height:50px;
+}
+.Top a .SignIn{
+    Float:right;
+}
+.Top img{
+    height: 50px;
+    Float:left;
+}
+.college{
+    margin: 10px 0 10px 0;
+    text-align:center;
+}
+.TopPublicity{
+    text-align:center;
+    width: 75%;
+    margin-left: 10%;
+}
+.publicity{
+    margin: 10px 0 10px 0;
+    text-align:center;
+}
+.content{
+    /*text-align:center;*/
+}
+.type{
+    display: flex;
+    border: 1px solid #d1dbe1;
+    height: 50px;
+    width: 75%;
+    margin-left: 10%;
+    font-size:16px;
+    padding: 10px;
+}
+.Requirement{
+    display: flex;
+    border: 1px solid #c8ced3;
+    height: 50px;
+    width: 75%;
+    margin-left: 10%;
+    margin-top: 0.5%;
+    padding: 10px;
+}
+.task{
+    display: flex;
+    width: 100%;
+}
+.form{
+    width:70%;
+    height: 500px;
+    border: 1px solid #d1dbe1;
+    margin-left: 10%;
+    display: flex;
+    margin-top: 0.5%;
+    float: left;
+}
+.form li{
+    display: flex;
+    border-bottom:1px solid #000;
+    height:50px;
+    margin: 0;
+    line-height: 50px;
+}
+.RightPublicity{
+    display: flex;
+    width:15%;
+    height: 500px;
+    border: 1px solid #d1dbe1;
+    float: right;
+    margin-right: 15%;
+    margin-left: 0.5%;
+    margin-top: 0.5%;
+}
+.wrap{
+    width: 50px;
+    float: left;
+    height: 100%;
+}
+.qt{
+    display: flex;
+    width: 35px;
+    height: 32px;
+    background-image: url(../image/xw.jpg);
+    margin: 8px;
+}
+.xc{
+    float: left;
+}
+.Number{
+    height: 100%;
+    float: left;
+    padding-left: 150px;
+}
+.rs{
+    float: left;
+    display: block;
+    width: 27px;
+    height: 17px;
+    background-image: url(../image/Number.jpg);
+    margin: 13px;
+}
+.yj {
+    float: left;
+    padding-left: 150px;
+}
+
+.sj{
+    float: left;
+    padding-left: 150px;
+}
+.time{
+    float: left;
+    display: flex;
+    width: 27px;
+    height: 17px;
+    background-image: url(../image/time.jpg);
+    margin: 13px;
+}
+
