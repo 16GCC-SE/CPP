@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-11-29 15:32:34
+Date: 2018-12-06 17:01:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,18 +33,17 @@ CREATE TABLE `employee` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for order
+-- Table structure for orders
 -- ----------------------------
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order` (
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
   `id` varchar(255) NOT NULL,
   `employer_id` varchar(255) DEFAULT NULL COMMENT '雇主id',
-  `employee_id` varchar(255) DEFAULT NULL COMMENT '雇员id',
   `title` varchar(255) DEFAULT NULL COMMENT '兼职标题',
   `content` varchar(255) DEFAULT NULL COMMENT '兼职内容',
   `deadline` datetime DEFAULT NULL COMMENT '截至时间',
   `classification` varchar(255) DEFAULT NULL COMMENT '订单分类',
-  `status` varchar(255) DEFAULT NULL COMMENT '订单状态',
+  `status` int(255) DEFAULT NULL COMMENT '订单状态(0-默认报名，1-进行中，2-兼职任务结束)',
   `need_number` int(11) DEFAULT NULL COMMENT '所需人数',
   `salary` int(255) DEFAULT NULL COMMENT '薪水',
   `place` varchar(255) DEFAULT NULL COMMENT '兼职地点',
@@ -55,7 +54,7 @@ CREATE TABLE `order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of order
+-- Records of orders
 -- ----------------------------
 
 -- ----------------------------
