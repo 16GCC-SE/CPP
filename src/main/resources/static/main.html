@@ -140,5 +140,21 @@
 <script src="vendors/pace-progress/js/pace.min.js"></script>
 <script src="vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
 <script src="vendors/@coreui/coreui/js/coreui.min.js"></script>
+<script>
+    $.ajax({
+        url:"/missions",
+        type:"GET",
+        success:function (response) {
+            mission = response;
+            var example1 = new Vue({
+                el: '#userTable',
+                data: {
+                    items: mission
+                }
+            });
+            return;
+        }
+    });
+</script>
 </body>
 </html>
