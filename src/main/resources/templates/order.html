@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑兼职信息</title>
+</head>
+<body>
+<form action="/test/release" method="post">
+    <table>
+        <tr>
+            <th>兼职标题:<input type="text" id="title" name="title"></th>
+        </tr>
+        <tr>
+            <th>兼职内容:<input type="text" id="content" name="content"></th>
+        </tr>
+        <tr>
+            <th>截止时间:<input type="text" id="deadline" name="deadline"></th>
+        </tr>
+        <tr>
+            <th>订单分类:<input type="text" id="classification" name="classification"></th>
+        </tr>
+        <tr>
+            <th>所需人数:<input type="text" id="need_number" name="need_number"></th>
+        </tr>
+        <tr>
+            <th>薪水:<input type="text" id="salary" name="salary"></th>
+        </tr>
+        <tr>
+            <th>兼职地点:<input type="text" id="place" name="place"></th>
+        </tr>
+        <tr>
+            <th>性别需求:<input type="text" id="sex" name="sex"></th>
+        </tr>
+        <tr>
+            <th>结算方式:<input type="text" id="settlement_method" name="settlement_method"></th>
+        </tr>
+        <tr>
+            <th><input type="button" onclick="OrderOn()" value="发布"></th>
+        </tr>
+    </table>
+</form>
+
+
+<script>
+    function OrderOn(){
+            var title=$("#title").val();
+            var content=$("#content").val();
+            var deadline=$("#deadline").val();
+            var classification=$("#classification").val();
+            var need_number=$("#need_number").val();
+            var salary=$("#salary").val();
+            var place=$("#place").val();
+            var sex=$("#sex").val();
+            var settlement_method=$("#settlement_method").val();
+
+            var order ={title:title,content:content,deadline:deadline,classification:classification,need_number:need_number,salary:salary,place:place,sex:sex,settlement_method:settlement_method};
+            var formData = new FormData();
+            formData.append("order", new Blob([JSON.stringify(order)], {
+                type: "application/json"
+            }));
+
+            $.ajax({
+                url: "/test/release",
+                type: "POST",
+                data: formData,
+                async: true,        //异步
+                processData: false,  //很重要，告诉jquery不要对form进行处理
+                contentType: false,  //很重要，指定为false才能形成正确的Content-Type
+                success: function(data){
+                    alert(data)
+                    //window.open('/test/register_action','_self');
+                }
+            });
+            return;
+    }
+</script>
+</body>
+</html>

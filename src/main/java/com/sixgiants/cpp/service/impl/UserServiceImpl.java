@@ -66,7 +66,7 @@ public class UserServiceImpl {
     }
 
     public int confirmPhone(String phone){
-        if (phone.length()!=11){
+        if (!phone.matches("^[1][3,4,5,7,8][0-9]{9}$")){
             return 0;
         }else {
             return 1;
@@ -74,11 +74,10 @@ public class UserServiceImpl {
     }
 
 
-    public String register(User user){
+    public void register(User user){
         user.setPassword(MD5Util.md5(user.getPassword()));
         user.setCreateTime(new Date());
         userDao.saveUser(user);
-        return "redirect:/login.html";
     }
 
     public String toUpdate(HttpServletRequest request, Model model){

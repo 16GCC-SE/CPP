@@ -18,7 +18,10 @@
             <td>邮箱:<input type="text" id="email" name="email" th:value="${user.email}"/></td>
         </tr>
         <tr>
-            <td>出生日期:<input type="text" id="birthday" name="birthday" th:value="${user.birthday}"/></td>
+            <td>手机号码:<input type="text" id="phone" name="phone" th:value="${user.phone}"/></td>
+        </tr>
+        <tr>
+            <th><input type="radio" name="sex" value="男" checked>男<input type="radio" name="sex" value="女">女</th>
         </tr>
         <tr>
             <td><input type="submit" value="保存"/></td>

@@ -4,12 +4,11 @@ import java.util.Date;
 
 public class User {
     private String id;
-    private String userName;
+    private String name;
     private String password;
-    private String phone;
     private String email;
-    private String head_icon;
-    private Integer sex;
+    private String phone;
+    private int sex;
     private Date createTime;
 
     public String getId() {
@@ -20,12 +19,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -36,13 +35,6 @@ public class User {
         this.password = password;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     public String getEmail() {
         return email;
@@ -52,19 +44,19 @@ public class User {
         this.email = email;
     }
 
-    public String getHead_icon() {
-        return head_icon;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setHead_icon(String head_icon) {
-        this.head_icon = head_icon;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public Integer getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 

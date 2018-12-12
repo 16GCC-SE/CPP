@@ -1,6 +1,5 @@
 package com.sixgiants.cpp.mapper;
 
-import com.sixgiants.cpp.entity.Order;
 import org.apache.ibatis.annotations.Select;
 
 public interface OrderMapper {
