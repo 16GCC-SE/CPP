@@ -23,8 +23,10 @@ body{
     Float:left;
 }
 .college{
-    margin: 10px 0 10px 0;
+    margin-left: 10%;
+    margin-top: 1%;
     text-align:center;
+
 }
 .TopPublicity{
     text-align:center;
