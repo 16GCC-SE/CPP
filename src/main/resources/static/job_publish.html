@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>前端框架</title>
+
+
+    <!-- CoreUI and necessary plugins-->
+    <script src="vendors/jquery/js/jquery.min.js"></script>
+    <script src="vendors/popper.js/js/popper.min.js"></script>
+    <script src="vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendors/pace-progress/js/pace.min.js"></script>
+    <script src="vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
+    <script src="vendors/@coreui/coreui/js/coreui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+
+    <link href="vendors/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+    <link href="vendors/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+
+</head>
+<style>
+
+
+    /*导航栏样式*/
+    @font-face {
+        font-family: hanzhen;
+        src: url("hanzhen.ttf");
+    }
+
+    .head {
+        width: 100%;
+        background-color: #B5B4B2;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .header_body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .around {
+        padding: 0px 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .until {
+        background-color: #C3C3C3;
+        padding: 10px 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: flex-end;
+    }
+
+    .until:hover {
+        background-color: #CFCFCF;
+    }
+
+    .until > img {
+        width: 40px;
+        height: 40px
+    }
+
+    .select_until {
+        background-color: #F2E61E;
+        padding: 0px 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .select_until > img {
+        width: 47px;
+        height: 47px;
+    }
+
+    /*导航栏样式*/
+
+
+</style>
+<body style="background-color: white;display: flex;flex-direction: column;justify-content: center">
+<header class="head">
+    <div class="around">
+        <img src="image/icon/home.svg" width="50px" height="50px">
+        <div style="font-family: hanzhen;font-size: 1.5em;color: white">兼职平台</div>
+    </div>
+    <div class="header_body">
+        <div class="until">
+            <img src="image/icon/flag.svg">
+        </div>
+        <div class="select_until">
+            <img src="image/icon/sign_select.svg">
+            <div style="color: white;font-family: hanzhen">找兼职</div>
+        </div>
+        <div class="until">
+            <img src="image/icon/letter.svg">
+        </div>
+    </div>
+    <div class="around">
+        <img src="image/icon/my.svg" width="40px" height="40px">
+    </div>
+</header>
+<nav class="text-center p-5"><img src="image/title.jpg"></nav>
+
+<article style="width:1000px" class="align-self-center text-center">
+    <section>
+        <div class="form-group row align-content-center">
+            <label class="col-md-1 text-center align-self-center font-2xl p-0" for="title">标题：</label>
+            <div class="col-md-11">
+                <input class="form-control" style="height:50px" id="title" type="text" name="title"
+                       placeholder="请输入兼职信息标题">
+            </div>
+        </div>
+    </section>
+    <section class="form-group row">
+        <!--工作详情框-->
+        <label class="col-md-1 text-center font-2xl p-0" for="content">内容：</label>
+        <div class="col-md-6">
+            <textarea class="form-control column-resize-line h-100" id="content" name="content" rows="9"
+                      placeholder="请输入兼职信息内容"></textarea>
+        </div>
+
+        <section class="col-md-5 pl-lg-0">
+            <div class="form-control h-100 pl-lg-0">
+                <div class="font-lg p-2">条件筛选</div>
+                <div class="w-100 b-t-1 p-3"></div>
+
+                <div class="form-group row">
+                    <!--类型选择框-->
+                    <label class="col-md-2 col-form-label p-0 align-self-center text-right" for="classification">类型：</label>
+                    <div class="col-md-3 p-0">
+                        <select class="form-control p-0" id="classification" name="classification">
+                            <option value="0">代课员</option>
+                            <option value="1">代拿员</option>
+                            <option value="2">送餐员</option>
+                            <option value="4">宣传员</option>
+                            <option value="5">校园活动</option>
+                            <option value="6">校外</option>
+                            <option value="7">长工</option>
+                            <option value="8">短工</option>
+                            <option value="9">其他</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <!--结算方式选择框-->
+                    <label class="col-md-2 col-form-label p-0 align-self-center text-right" for="settlement_method">结算方式：</label>
+                    <div class="col-md-3 p-0">
+                        <select class="form-control p-0" id="settlement_method" name="settlement_method">
+                            <option value="0">元/时</option>
+                            <option value="1">元/天</option>
+                            <option value="1">元/月</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!--薪资填空框-->
+                    <label class="col-md-2 col-form-label p-0 align-self-center text-right" for="salary">薪酬：</label>
+                    <div class="col-md-3 p-0">
+                        <input class="form-control" id="salary" type="number" name="salary" placeholder="0">
+                    </div>
+                    <div class="col-md-1"></div>
+                    <!--性别要求选择框-->
+                    <label class="col-md-2 col-form-label p-0 align-self-center text-right" for="sex">性别要求：</label>
+                    <div class="col-md-3 p-0">
+                        <select class="form-control p-0" id="sex" name="sex">
+                            <option value="0">不限</option>
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!--地点填空框-->
+                    <label class="col-md-2 col-form-label p-0 align-self-center text-right" for="place">地点：</label>
+                    <div class="col-md-3 p-0">
+                        <input class="form-control" id="place" type="text" name="place" placeholder="空">
+                    </div>
+                    <div class="col-md-1"></div>
+                    <!--所需人数-->
+                    <label class="col-md-2 col-form-label p-0 align-self-center text-right" for="need_number">所需人数：</label>
+                    <div class="col-md-3 p-0">
+                        <input class="form-control" id="need_number" type="number" name="need_number" placeholder="0">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!--报名时间-->
+                    <label class="col-md-2 col-form-label p-0 align-self-center text-right" for="deadline">时间：</label>
+                    <div class="col-md-9 p-0">
+                        <input class="form-control" id="deadline" type="date" name="deadline" placeholder="date">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </section>
+    <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0 text-center p-5">
+        <button class="btn btn-success w-50" style="height: 50px" type="button">提交</button>
+    </div>
+</article>
+
+<footer>
+
+</footer>
+</body>
+
+<script>
+
+
+    function submitData(){
+        let title=$("title").val();
+        let content=$("content").val();
+        let classification=$("classification option:selected").text();
+        let settlementMethod=$("#settlement_method option:selected").text();
+        let salary=$("salary").val();
+        let sex=$("#sex option:selected").text();
+        let place=$("place").val();
+        let needNumber=$("need_number").val();
+        let deadline=$("deadline").val();
+        $.ajax({
+            url:'',
+            type:"POST",
+            data:{
+                title:title,
+                content:content,
+                classification:classification,
+                settlementMethod:settlementMethod,
+                salary:salary,
+                sex:sex,
+                place:place,
+                needNumber:needNumber,
+                deadline:deadline
+            },
+            success:function (res) {
+
+            }
+        })
+    }
+</script>
+</html>
