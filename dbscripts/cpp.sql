@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-12-06 17:01:13
+Date: 2018-12-12 20:20:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,9 +47,9 @@ CREATE TABLE `orders` (
   `need_number` int(11) DEFAULT NULL COMMENT '所需人数',
   `salary` int(255) DEFAULT NULL COMMENT '薪水',
   `place` varchar(255) DEFAULT NULL COMMENT '兼职地点',
-  `sex` tinyint(255) DEFAULT NULL COMMENT '性别需求',
+  `sex` varchar(255) DEFAULT NULL COMMENT '性别需求',
   `created_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `settlement_method` tinyint(4) DEFAULT NULL COMMENT '结算方式',
+  `settlement_method` varchar(255) DEFAULT NULL COMMENT '结算方式',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
