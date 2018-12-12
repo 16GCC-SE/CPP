@@ -3,7 +3,7 @@ package com.sixgiants.cpp.entity;
 import javax.xml.crypto.Data;
 import java.util.Date;
 
-public class record {
+public class Record {
     private String Id;
     private Integer status;
     private String parent_id;

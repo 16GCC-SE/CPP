@@ -14,7 +14,7 @@ public class OrderServiceImpl {
 
     public void release(Order order){
         order.setStatus(0);
-        order.setCreated_time(new Date());
+        order.setCreateTime(new Date());
         orderDao.saveOrder(order);
     }
 }

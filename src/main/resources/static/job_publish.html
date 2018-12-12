@@ -208,7 +208,7 @@
         </section>
     </section>
     <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0 text-center p-5">
-        <button class="btn btn-success w-50" style="height: 50px" type="button">提交</button>
+        <button class="btn btn-success w-50" style="height: 50px" type="button" onclick="submitData()">提交</button>
     </div>
 </article>
 
@@ -221,19 +221,20 @@
 
 
     function submitData(){
-        let title=$("title").val();
-        let content=$("content").val();
-        let classification=$("classification option:selected").text();
+        let title=$("#title").val();
+        let content=$("#content").val();
+        let classification=$("#classification option:selected").text();
         let settlementMethod=$("#settlement_method option:selected").text();
-        let salary=$("salary").val();
+        let salary=$("#salary").val();
         let sex=$("#sex option:selected").text();
-        let place=$("place").val();
-        let needNumber=$("need_number").val();
-        let deadline=$("deadline").val();
+        let place=$("#place").val();
+        let needNumber=$("#need_number").val();
+        let deadline=$("#deadline").val();
         $.ajax({
-            url:'',
+            url:'/test/release',
             type:"POST",
-            data:{
+            contentType: 'application/json; charset=UTF-8',
+            data:JSON.stringify({
                 title:title,
                 content:content,
                 classification:classification,
@@ -243,7 +244,7 @@
                 place:place,
                 needNumber:needNumber,
                 deadline:deadline
-            },
+            }),
             success:function (res) {
 
             }

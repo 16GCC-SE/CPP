@@ -2,7 +2,7 @@ package com.sixgiants.cpp.entity;
 
 import java.util.Date;
 
-public class order {
+public class Order {
     private String id;
     private String employerId;
     private String title;
@@ -13,8 +13,8 @@ public class order {
     private Integer needNumber;
     private  Integer salary;
     private  String palce;
-    private Integer sex;
-    private Integer settlementMethod;
+    private String sex;
+    private String settlementMethod;
     private Date createTime;
 
     public String getId() {
@@ -97,19 +97,19 @@ public class order {
         this.palce = palce;
     }
 
-    public Integer getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
-    public Integer getSettlementMethod() {
+    public String getSettlementMethod() {
         return settlementMethod;
     }
 
-    public void setSettlementMethod(Integer settlementMethod) {
+    public void setSettlementMethod(String settlementMethod) {
         this.settlementMethod = settlementMethod;
     }
 

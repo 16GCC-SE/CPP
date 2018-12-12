@@ -14,7 +14,7 @@ public class OrderDao {
 
     public void saveOrder(Order order){
         order.setId(UUIDutil.getUUID());
-        order.setEmployer_id(UUIDutil.getUUID());
+        order.setEmployerId(UUIDutil.getUUID());//这里填写发布用户的ID，不是自己生成的ID
         orderMapper.saveOrder(order);
     }
 }

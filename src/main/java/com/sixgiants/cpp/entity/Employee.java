@@ -2,7 +2,7 @@ package com.sixgiants.cpp.entity;
 
 import java.util.Date;
 
-public class employee {
+public class Employee {
     private String id;
     private String orderId;
     private Integer status;
