@@ -1,5 +1,6 @@
 package com.sixgiants.cpp.controller;
 
+import com.sixgiants.cpp.entity.Order;
 import com.sixgiants.cpp.service.impl.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +14,9 @@ public class OrderController {
 
     @PostMapping("/release")
     @ResponseBody
-    public void release(@RequestBody Order order){
+    public boolean release(@RequestBody Order order){
         orderService.release(order);
+        return true;
     }
 
     @RequestMapping("/goRelease")

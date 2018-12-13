@@ -1,6 +1,7 @@
 package com.sixgiants.cpp.service.impl;
 
 import com.sixgiants.cpp.dao.OrderDao;
+import com.sixgiants.cpp.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
