@@ -15,13 +15,6 @@ body{
     background-color: #c8ced3;
     height:50px;
 }
-.Top a .SignIn{
-    Float:right;
-}
-.Top img{
-    height: 50px;
-    Float:left;
-}
 .college{
     margin-left: 10%;
     margin-top: 1%;
@@ -40,27 +33,26 @@ body{
 .content{
     /*text-align:center;*/
 }
-.type{
-    display: flex;
+.jianzhi{
+
+    width:50%;
+    height: 70%;
     border: 1px solid #d1dbe1;
-    height: 50px;
-    width: 75%;
     margin-left: 10%;
-    font-size:16px;
-    padding: 10px;
-}
-.Requirement{
     display: flex;
-    border: 1px solid #c8ced3;
-    height: 50px;
-    width: 75%;
-    margin-left: 10%;
     margin-top: 0.5%;
-    padding: 10px;
 }
-.task{
+.xiangqing>span>h4{
+    margin-top: 5%;
+}
+.xiangqing{
+
+    width:50%;
+    height: 70%;
+    border: 1px solid #d1dbe1;
+    margin-left: 10%;
     display: flex;
-    width: 100%;
+    margin-top: 0.5%;
 }
 .form{
     width:70%;

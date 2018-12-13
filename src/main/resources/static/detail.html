@@ -27,104 +27,31 @@
     <a href=""><img class="SignIn" src="image/SignIn.jpg"></a>
 </div>
 <div class="content">
+    <div style="margin-top:1% ">
     <span class="college">
         <A HREF=""> 广州商学院校园兼职平台</A>
         <A > &nbsp;>&nbsp;兼职详情</A>
     </span>
-    <div class="type">
-        类型：
-        <a href="">带课员 &nbsp;</a>
-        <a href="">代拿员 &nbsp;</a>
-        <a href="">送餐员 &nbsp;</a>
-        <a href="">宣传员 &nbsp;</a>
-        <a href="">校园活动 &nbsp;</a>
-        <a href="">校外 &nbsp;</a>
-        <a href="">长工 &nbsp;</a>
-        <a href="">短工 &nbsp;</a>
-        <a href="">其他 &nbsp;</a>
     </div>
-    <!--类型选项-->
-    <div class="Requirement">
-        <div class="btn-group ml-2">
-            <button class="btn btn-sm btn-secondary" type="button">
-                <font>结算方式</font>
-            </button>
-            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            </button>
-            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次结</font></font></a>
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日结</font></font></a>
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">月结</font></font></a>
-            </div>
-        </div>
-        <!--第一个下拉-->
-        <div class="btn-group ml-2">
-            <button class="btn btn-sm btn-secondary" type="button">
-                <font>性别需求</font>
-            </button>
-            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            </button>
-            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">男</font></font></a>
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">女</font></font></a>
-            </div>
-        </div>
-        <!--第二个下拉-->
-        <div class="btn-group ml-2">
-            <button class="btn btn-sm btn-secondary" type="button">
-                <font>工资最高</font>
-            </button>
-            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            </button>
-            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">工资最低</font></font></a>
-            </div>
-        </div>
-        <!--第三个下拉-->
-        <div class="btn-group ml-2">
-            <button class="btn btn-sm btn-secondary" type="button">
-                <font>校方发布</font>
-            </button>
-            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            </button>
-            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">个人发布</font></font></a>
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商家发布</font></font></a>
-            </div>
-        </div>
-        <!--第四个下拉-->
-        <div class="btn-group ml-2">
-            <button class="btn btn-sm btn-secondary" type="button">
-                <font>最新发布</font>
-            </button>
-            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            </button>
-            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最晚发布</font></font></a>
-            </div>
-        </div>
-        <!--第五个下拉-->
+    <div>
+    <div CLASS="jianzhi">
+        <span>
+        <h3 style="margin-top: 3%;">&nbsp;&nbsp;&nbsp;天猫优惠券代理，手把手带你赚钱</h3><br>
+            <a style="margin-left: 5%"><i class="fa fa-yen fa-lg " style="color: red">192元</i></a>
+            <a style="font-size: 80%">/小时</a>
+            <a style="margin-left: 23%">月结&nbsp;&nbsp;|&nbsp;&nbsp;1000人&nbsp;&nbsp;|&nbsp;&nbsp;2018-11-28</a>
+               <button class="btn btn-square btn-warning" type="button" style="margin-left: 5%;margin-top: 10%">
+<i class="fa fa-lightbulb-o"></i>&nbsp;领取任务</button>
+
+        </span>
     </div>
-    <div class="task">
-        <div class="form">
-            <table class="table table-responsive-sm table-bordered" id="userTable"  >
-                <tbody>
-                <tr  v-for="(item,index)  in items">
-                    <td><{{item.status}}>&nbsp;{{item.mission}}</td>
-                    <td> <i class="icon-user">{{item.number}}</i></td>
-                    <td><i class="cui-yen">{{item.salary}}</i></td>
-                    <td>
-                        <i class="fa fa-clock-o">{{item.time}}</i>
-                    </td>
-                    <!--<td>-->
-                    <!--<button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#modify" v-bind:data-rowindex="index" aria-pressed="true"><SPAN class="icons font-1xl cui-brush"></SPAN>&nbsp;编辑</button>-->
-                    <!--<button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#delete" v-bind:data-rowindex="index" aria-pressed="true"><SPAN class="icons font-1xl cui-trash" ></SPAN>&nbsp;删除</button>-->
-                    <!--</td>-->
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="RightPublicity"></div>
+    <div class="xiangqing">
+        <span>
+        <h4 >&nbsp;&nbsp;&nbsp;兼职详情</h4>
+            <HR style="width: 300px;margin-left: 5%">
+            <button class="btn btn-lg btn-success" type="button">男</button>
+        </span>
+    </div>
     </div>
     <div class="list">
     <ul class="pagination">
