@@ -6,9 +6,10 @@ public class User {
     private String id;
     private String name;
     private String password;
-    private String email;
     private String phone;
-    private int sex;
+    private String email;
+    private String head_icon;
+    private String sex;
     private Date createTime;
 
     public String getId() {
@@ -35,6 +36,13 @@ public class User {
         this.password = password;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getEmail() {
         return email;
@@ -44,19 +52,19 @@ public class User {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getHead_icon() {
+        return head_icon;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setHead_icon(String head_icon) {
+        this.head_icon = head_icon;
     }
 
-    public int getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 

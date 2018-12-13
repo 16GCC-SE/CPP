@@ -5,14 +5,15 @@ import java.util.Date;
 public class Order {
     private String id;
     private String employerId;
+    private String employeeId;
     private String title;
     private String content;
     private Date deadline;
     private String classification;
-    private Integer status;
+    private String status;
     private Integer needNumber;
     private Integer salary;
-    private String place;
+    private String palce;
     private String sex;
     private String settlementMethod;
     private Date createTime;
@@ -31,6 +32,14 @@ public class Order {
 
     public void setEmployerId(String employerId) {
         this.employerId = employerId;
+    }
+
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getTitle() {
@@ -65,11 +74,11 @@ public class Order {
         this.classification = classification;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -89,12 +98,12 @@ public class Order {
         this.salary = salary;
     }
 
-    public String getPlace() {
-        return place;
+    public String getPalce() {
+        return palce;
     }
 
-    public void setPlace(String palce) {
-        this.place = palce;
+    public void setPalce(String palce) {
+        this.palce = palce;
     }
 
     public String getSex() {
