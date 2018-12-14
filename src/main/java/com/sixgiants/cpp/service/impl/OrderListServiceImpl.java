@@ -85,13 +85,13 @@ public class OrderListServiceImpl {
         return newOrders;
     }
 
-    public List<Order> getSalarySort(int method) {
+    public List<Order> getSalarySort(String method) {
         List<Order> orders = getOrders();
         Collections.sort(orders,new Comparator<Order>() {
 
             @Override
             public int compare(Order o1, Order o2) {
-                if (method == 1) { //从高到低
+                if ("max".equals(method)) { //从高到低
                     return o2.getSalary() - o1.getSalary();
                 } else {
                     return o1.getSalary()-o2.getSalary();
@@ -101,46 +101,40 @@ public class OrderListServiceImpl {
         return orders;
     }
 
-    public  List<Order> getMerchantJob() {
+    public List<Order> getJobType(String jobType) {
         List<Order> newOrders = new ArrayList<Order>();
         List<Order> orders = getOrders();
         for (Order order : orders) {
-            if (merchantList.contains(order.getClassification())) {
-                newOrders.add(order);
+            switch (jobType) {
+                case "school":
+                    if (schoolList.contains(order.getClassification())) {
+                        newOrders.add(order);
+                    }
+                    break;
+                case "merchant":
+                    if (merchantList.contains(order.getClassification())) {
+                        newOrders.add(order);
+                    }
+                    break;
+                case "person":
+                    if (personList.contains(order.getClassification())) {
+                        newOrders.add(order);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         return newOrders;
     }
 
-    public  List<Order> getSchoolJob() {
-        List<Order> newOrders = new ArrayList<Order>();
-        List<Order> orders = getOrders();
-        for (Order order : orders) {
-            if (schoolList.contains(order.getClassification())) {
-                newOrders.add(order);
-            }
-        }
-        return newOrders;
-    }
-
-    public  List<Order> getPersonJob() {
-        List<Order> newOrders = new ArrayList<Order>();
-        List<Order> orders = getOrders();
-        for (Order order : orders) {
-            if (personList.contains(order.getClassification())) {
-                newOrders.add(order);
-            }
-        }
-        return newOrders;
-    }
-
-    public List<Order> getReleaseSort(int method) {
+    public List<Order> getReleaseSort(String method) {
         List<Order> orders = getOrders();
         Collections.sort(orders,new Comparator<Order>() {
 
             @Override
             public int compare(Order o1, Order o2) {
-                if (method ==1) {  //从新到晚
+                if ("newest".equals(method)) {  //从新到晚
                     return o2.getCreateTime().compareTo(o1.getCreateTime());
                 } else {
                     return o1.getCreateTime().compareTo(o2.getCreateTime());

@@ -4,8 +4,7 @@ import com.sixgiants.cpp.entity.Order;
 import com.sixgiants.cpp.service.impl.OrderListServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,111 +25,41 @@ public class OrderListController {
         return orderListServiceImpl.getLengthOfOrders();
     }
 
-    @GetMapping("/timesettlement")
+    @PostMapping("/settlement")
     @ResponseBody
-    public  List<Order> getTimeSettlement() {
-        return orderListServiceImpl.getSettlementMethod("次结");
+    public  List<Order> getSettlement(@RequestBody String param) {
+        return orderListServiceImpl.getSettlementMethod(param);
     }
 
-    @GetMapping("/daysettlement")
+    @PostMapping("/sex")
     @ResponseBody
-    public  List<Order> getDaySettlement() {
-        return orderListServiceImpl.getSettlementMethod("日结");
+    public  List<Order> getSex(@RequestBody String param) {
+        return orderListServiceImpl.getSexNeed(param);
     }
 
-    @GetMapping("/monsettlement")
+
+    @PostMapping("/salary")
     @ResponseBody
-    public  List<Order> getMonSettlement() {
-        return orderListServiceImpl.getSettlementMethod("月结");
+    public  List<Order> getSalary(@RequestBody String param) {
+        return orderListServiceImpl.getSalarySort(param);
     }
 
-    @GetMapping("/needmale")
+    @PostMapping("/jobtype")
     @ResponseBody
-    public  List<Order> getMale() {
-        return orderListServiceImpl.getSexNeed("男");
+    public  List<Order> getJobType(@RequestBody String param) {
+        return orderListServiceImpl.getJobType(param);
     }
 
-    @GetMapping("/needfamale")
+    @PostMapping("/release")
     @ResponseBody
-    public  List<Order> getFamale() {
-        return orderListServiceImpl.getSexNeed("女");
+    public  List<Order> getRelease(@RequestBody String param) {
+        return orderListServiceImpl.getReleaseSort(param);
     }
 
-    @GetMapping("/minsalary")
+    @PostMapping("/classification")
     @ResponseBody
-    public  List<Order> getMinSalary() {
-        return orderListServiceImpl.getSalarySort(0);
+    public  List<Order> getClassification(@RequestBody String param) {
+        return orderListServiceImpl.getClassification(param);
     }
 
-    @GetMapping("/merchantjob")
-    @ResponseBody
-    public  List<Order> getMerchantJob() {
-        return orderListServiceImpl.getMerchantJob();
-    }
-
-    @GetMapping("/personjob")
-    @ResponseBody
-    public  List<Order> getPersonJob() {
-        return orderListServiceImpl.getPersonJob();
-    }
-
-    @GetMapping("/latestrelease")
-    @ResponseBody
-    public  List<Order> getLatestRelease() {
-        return orderListServiceImpl.getReleaseSort(0);
-    }
-
-    @GetMapping("/agentclass")
-    @ResponseBody
-    public  List<Order> getAgentClass() {
-        return orderListServiceImpl.getClassification("代课员");
-    }
-
-    @GetMapping("/agentpick")
-    @ResponseBody
-    public  List<Order> getAgentPick() {
-        return orderListServiceImpl.getClassification("代拿员");
-    }
-
-    @GetMapping("/delivefoot")
-    @ResponseBody
-    public  List<Order> getDeliveFoot() {
-        return orderListServiceImpl.getClassification("送餐员");
-    }
-
-    @GetMapping("/promoter")
-    @ResponseBody
-    public  List<Order> getPromoter() {
-        return orderListServiceImpl.getClassification("宣传员");
-    }
-
-    @GetMapping("/insidesparty")
-    @ResponseBody
-    public  List<Order> getInsidesParty() {
-        return orderListServiceImpl.getClassification("校园活动");
-    }
-
-    @GetMapping("/outsides")
-    @ResponseBody
-    public  List<Order> getOutsides() {
-        return orderListServiceImpl.getClassification("校外");
-    }
-
-    @GetMapping("/longjob")
-    @ResponseBody
-    public  List<Order> getLongJob() {
-        return orderListServiceImpl.getClassification("长工");
-    }
-
-    @GetMapping("/shortjob")
-    @ResponseBody
-    public  List<Order> getShortJob() {
-        return orderListServiceImpl.getClassification("短工");
-    }
-
-    @GetMapping("/others")
-    @ResponseBody
-    public  List<Order> getOthers() {
-        return orderListServiceImpl.getClassification("其他");
-    }
 }
