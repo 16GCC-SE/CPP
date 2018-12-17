@@ -81,19 +81,6 @@ body{
     margin-left: 0.5%;
     margin-top: 0.5%;
 }
-.wrap{
-    width: 50px;
-    float: left;
-    height: 100%;
-}
-.xc{
-    float: left;
-}
-.Number{
-    height: 100%;
-    float: left;
-    padding-left: 150px;
-}
 .list{
     margin-left: 10%;
     margin-top: 1%;

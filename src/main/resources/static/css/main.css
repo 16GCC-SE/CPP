@@ -10,6 +10,12 @@ body{
 }
 .table>tbody>tr>td{
     border:none;
+    text-align: center;
+}
+.table>thead>tr>th{
+    text-align: center;
+    border: none;
+    border-bottom: gray solid 1px;
 }
 .Top{
     background-color: #c8ced3;
