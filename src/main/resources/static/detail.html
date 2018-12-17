@@ -26,7 +26,7 @@
     <a href=""><img src="image/Navigation2.jpg"></a>
     <a href=""><img class="SignIn" src="image/SignIn.jpg"></a>
 </div>
-<div class="content" id="xiangqing">
+<div class="content" id="Detail">
     <div style="margin-top:1% ">
     <span class="college">
         <A HREF=""> 广州商学院校园兼职平台</A>
@@ -47,7 +47,7 @@
 
         </span>
     </div>
-    <div class="xiangQing">
+    <div class="xiangqing">
         <span style="width: 100%">
         <h4 style="margin-left: 5%">兼职详情</h4>
             <HR style="width: 70%;margin-left: 5%">
@@ -114,7 +114,7 @@
         success:function (response) {
             xiangqing = response;
             var example1 = new Vue({
-                el: '#xiangQing',
+                el: '#Detail',
                 data: {
                     items: xiangqing
                 }
