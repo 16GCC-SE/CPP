@@ -69,11 +69,9 @@
         </div>
         <!--第一个下拉-->
         <div class="btn-group ml-2">
-            <button class="btn btn-sm btn-secondary" type="button">
-                <font>性别需求</font>
-            </button>
             <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <font>性别需求</font>
             </button>
             <div class="dropdown-menu" x-placement="bottom-start"
                  style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
@@ -85,25 +83,16 @@
         </div>
         <!--第二个下拉-->
         <div class="btn-group ml-2">
-            <button class="btn btn-sm btn-secondary" type="button">
-                <font>工资最高</font>
-            </button>
             <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <font>工资最高</font>
             </button>
-            <div class="dropdown-menu" x-placement="bottom-start"
-                 style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="javascript:selectResult('/salary', 'min')"><font style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">工资最低</font></font></a>
-            </div>
         </div>
         <!--第三个下拉-->
         <div class="btn-group ml-2">
-            <button class="btn btn-sm btn-secondary" type="button">
-                <font>校方发布</font>
-            </button>
             <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <font>校方发布</font>
             </button>
             <div class="dropdown-menu" x-placement="bottom-start"
                  style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
@@ -118,13 +107,6 @@
             <button class="btn btn-sm btn-secondary" type="button">
                 <font>最新发布</font>
             </button>
-            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            </button>
-            <div class="dropdown-menu" x-placement="bottom-start"
-                 style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="javascript:selectResult('/release', 'latest')"><font style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">最晚发布</font></font></a>
             </div>
         </div>
         <!--第五个下拉-->
@@ -134,7 +116,7 @@
             <table class="table table-responsive-sm table-bordered" id="ordersTable">
                 <tbody>
                 <tr v-for="(item,index) in pageItems">
-                    <td><{{item.classification}}>&nbsp;<a v-on:click="jumpOrderDetail()">{{item.title}}</a></td>
+                    <td> <button class="btn btn-pill btn-success btn-sm" type="button">{{item.classification}}</button>>&nbsp;<a v-on:click="jumpOrderDetail()">{{item.title}}</a></td>
                     <td><i class="icon-user">{{item.needNumber}}</i></td>
                     <td><i class="cui-yen">{{item.salary}}</i></td>
                     <td>
