@@ -123,8 +123,8 @@
             </button>
             <div class="dropdown-menu" x-placement="bottom-start"
                  style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="javascript:selectResult('/latestrelease')"><font style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">最晚发布</a>
+                <a class="dropdown-item" href="javascript:selectResult('/latestrelease')"><font style="vertical-align: inherit;"></font><font
+                        style="vertical-align: inherit;">最晚发布</font></a>
             </div>
         </div>
         <!--第五个下拉-->
@@ -142,9 +142,9 @@
                 </thead>
                 <tbody>
                 <tr v-for="(item,index) in pageItems">
-                    <td><a href="" class="alert-link"><{{item.classification}}>&nbsp;{{item.title}}</a></td>
+                    <td><{{item.classification}}><a href="javascript:" class="alert-link">&nbsp;{{item.title}}</a></td>
                    <!--<td><a href="#" class="alert-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">示例链接</font></font></a></td>-->
-                    <td><i class="icon-user"><a>{{item.needNumber}}</i></td>
+                    <td><i class="icon-user">{{item.needNumber}}</i></td>
                     <td><i class="cui-yen">{{item.salary}}</i></td>
                     <td>
                         <i class="fa fa-clock-o">{{item.createTime}}</i>
@@ -214,6 +214,19 @@
         list: "/orders"
     };
     var selectResult = function (requestUrl) {
+        $.ajax({
+            url : requestUrl,
+            dataType: "json",
+            success : function (response) {
+                orders.splice(0, orders.length);
+                for (var i = 0; i < response.length; i++) {
+                    orders.push(response[i]);
+                }
+            }
+        });
+    };
+
+    var turnOrderDetail = function (id) {
         $.ajax({
             url : requestUrl,
             dataType: "json",
