@@ -38,15 +38,15 @@
     </div>
     <div class="type">
         类型：
-        <a href="javascript:selectResult('/agentclass')">代课员 &nbsp;</a>
-        <a href="javascript:selectResult('/agentpick')">代拿员 &nbsp;</a>
-        <a href="javascript:selectResult('/delivefoot')">送餐员 &nbsp;</a>
-        <a href="javascript:selectResult('/promoter')">宣传员 &nbsp;</a>
-        <a href="javascript:selectResult('/insidesparty')">校园活动 &nbsp;</a>
-        <a href="javascript:selectResult('/outsides')">校外 &nbsp;</a>
-        <a href="javascript:selectResult('/longjob')">长工 &nbsp;</a>
-        <a href="javascript:selectResult('/shortjob')">短工 &nbsp;</a>
-        <a href="javascript:selectResult('/others')">其他 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '代课员')">代课员 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '代拿员')">代拿员 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '送餐员')">送餐员 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '宣传员')">宣传员 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '校园活动')">校园活动 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '校外')">校外 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '长工')">长工 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '短工')">短工 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '其他')">其他 &nbsp;</a>
     </div>
     <!--类型选项-->
     <div class="Requirement">
@@ -59,11 +59,11 @@
             </button>
             <div class="dropdown-menu" x-placement="bottom-start"
                  style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="javascript:selectResult('/timesettlement')"><font style="vertical-align: inherit;"><font
+                <a class="dropdown-item" href="javascript:selectResult('/settlement', '次结')"><font style="vertical-align: inherit;"><font
                         style="vertical-align: inherit;">次结</font></font></a>
-                <a class="dropdown-item" href="javascript:selectResult('/daysettlement')"><font style="vertical-align: inherit;"><font
+                <a class="dropdown-item" href="javascript:selectResult('/settlement', '日结')"><font style="vertical-align: inherit;"><font
                         style="vertical-align: inherit;">日结</font></font></a>
-                <a class="dropdown-item" href="javascript:selectResult('/monsettlement')"><font style="vertical-align: inherit;"><font
+                <a class="dropdown-item" href="javascript:selectResult('/settlement', '月结')"><font style="vertical-align: inherit;"><font
                         style="vertical-align: inherit;">月结</font></font></a>
             </div>
         </div>
@@ -77,9 +77,9 @@
             </button>
             <div class="dropdown-menu" x-placement="bottom-start"
                  style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="javascript:selectResult('/needmale')"><font style="vertical-align: inherit;"><font
+                <a class="dropdown-item" href="javascript:selectResult('/sex', '男')"><font style="vertical-align: inherit;"><font
                         style="vertical-align: inherit;">男</font></font></a>
-                <a class="dropdown-item" href="javascript:selectResult('/needfamale')"><font style="vertical-align: inherit;"><font
+                <a class="dropdown-item" href="javascript:selectResult('/sex', '女')"><font style="vertical-align: inherit;"><font
                         style="vertical-align: inherit;">女</font></font></a>
             </div>
         </div>
@@ -93,7 +93,7 @@
             </button>
             <div class="dropdown-menu" x-placement="bottom-start"
                  style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="javascript:selectResult('/minsalary')"><font style="vertical-align: inherit;"><font
+                <a class="dropdown-item" href="javascript:selectResult('/salary', 'min')"><font style="vertical-align: inherit;"><font
                         style="vertical-align: inherit;">工资最低</font></font></a>
             </div>
         </div>
@@ -107,9 +107,9 @@
             </button>
             <div class="dropdown-menu" x-placement="bottom-start"
                  style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="javascript:selectResult('/personjob')"><font style="vertical-align: inherit;"><font
+                <a class="dropdown-item" href="javascript:selectResult('/jobtype', 'person')"><font style="vertical-align: inherit;"><font
                         style="vertical-align: inherit;">个人发布</font></font></a>
-                <a class="dropdown-item" href="javascript:selectResult('/merchantjob')"><font style="vertical-align: inherit;"><font
+                <a class="dropdown-item" href="javascript:selectResult('/jobtype', 'merchant')"><font style="vertical-align: inherit;"><font
                         style="vertical-align: inherit;">商家发布</font></font></a>
             </div>
         </div>
@@ -123,8 +123,8 @@
             </button>
             <div class="dropdown-menu" x-placement="bottom-start"
                  style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="javascript:selectResult('/latestrelease')"><font style="vertical-align: inherit;"></font><font
-                        style="vertical-align: inherit;">最晚发布</font></a>
+                <a class="dropdown-item" href="javascript:selectResult('/release', 'latest')"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">最晚发布</font></font></a>
             </div>
         </div>
         <!--第五个下拉-->
@@ -132,18 +132,9 @@
     <div class="task">
         <div class="form">
             <table class="table table-responsive-sm table-bordered" id="ordersTable">
-                <thead>
-                <tr>
-                    <th scope="col">任务</th>
-                    <th scope="col">需求人数</th>
-                    <th scope="col">工薪</th>
-                    <th scope="col">发布时间</th>
-                </tr>
-                </thead>
                 <tbody>
                 <tr v-for="(item,index) in pageItems">
-                    <td><{{item.classification}}><a href="javascript:" class="alert-link">&nbsp;{{item.title}}</a></td>
-                   <!--<td><a href="#" class="alert-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">示例链接</font></font></a></td>-->
+                    <td><{{item.classification}}>&nbsp;<a>{{item.title}}</a></td>
                     <td><i class="icon-user">{{item.needNumber}}</i></td>
                     <td><i class="cui-yen">{{item.salary}}</i></td>
                     <td>
@@ -213,22 +204,12 @@
     var serviceUrl = {
         list: "/orders"
     };
-    var selectResult = function (requestUrl) {
+    var selectResult = function (requestUrl, param) {
         $.ajax({
             url : requestUrl,
-            dataType: "json",
-            success : function (response) {
-                orders.splice(0, orders.length);
-                for (var i = 0; i < response.length; i++) {
-                    orders.push(response[i]);
-                }
-            }
-        });
-    };
-
-    var turnOrderDetail = function (id) {
-        $.ajax({
-            url : requestUrl,
+            type: 'POST',
+            data :param,
+            contentType:"application/json;charset=UTF-8",
             dataType: "json",
             success : function (response) {
                 orders.splice(0, orders.length);
