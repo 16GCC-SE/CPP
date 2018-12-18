@@ -1,0 +1,82 @@
+/**{*/
+/*padding: 0;*/
+/*margin:0;*/
+/*text-decoration: none;*/
+/*color: black;*/
+/*list-style-type:none;*/
+/*}*/
+body{
+    background-color: white;
+}
+.table>tbody>tr>td{
+    border:none;
+    text-align: center;
+    border-bottom: gray solid 1px;
+}
+.table>thead>tr>th{
+    text-align: center;
+    border: none;
+
+}
+.Top{
+    background-color: #c8ced3;
+    height:50px;
+}
+.Top a .SignIn{
+    Float:right;
+}
+.Top img{
+    height: 50px;
+    Float:left;
+}
+.college{
+    margin: 10px 0 10px 0;
+    text-align:center;
+}
+.TopPublicity{
+    text-align:center;
+    width: 75%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-left: 10%;
+}
+.publicity{
+    margin: 10px 0 10px 0;
+    text-align:center;
+}
+.content{
+    /*text-align:center;*/
+}
+.type{
+    display: flex;
+    border: 1px solid #d1dbe1;
+    height: 50px;
+    width: 75%;
+    margin-left: 10%;
+    font-size:16px;
+    padding: 10px;
+}
+.Requirement{
+    display: flex;
+    border: 1px solid #c8ced3;
+    height: 50px;
+    width: 75%;
+    margin-left: 10%;
+    margin-top: 0.5%;
+    padding: 10px;
+}
+.task{
+    display: flex;
+    width: 100%;
+}
+.form{
+    width:70%;
+    margin-left: 10%;
+    display: flex;
+    margin-top: 0.5%;
+    float: left;
+}
+.list{
+    margin-left: 10%;
+    margin-top: 1%;
+}
