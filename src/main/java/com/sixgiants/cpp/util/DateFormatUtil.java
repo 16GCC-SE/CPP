@@ -9,7 +9,7 @@ import java.util.Date;
  * @date 2018/11/17 0017
  */
 public class DateFormatUtil {
-    public static String dateFormat(Date date){
+    public static String format(Date date){
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
         return simpleDateFormat.format(date);
     }
@@ -22,4 +22,8 @@ public class DateFormatUtil {
         }
         return null;
     }
+    public static Date dateFormat(Date date) {
+        return java.sql.Date.valueOf(format(date));
+    }
+
 }
