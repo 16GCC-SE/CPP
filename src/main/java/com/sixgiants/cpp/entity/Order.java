@@ -13,7 +13,7 @@ public class Order {
     private String status;
     private Integer needNumber;
     private Integer salary;
-    private String palce;
+    private String place;
     private String sex;
     private String settlementMethod;
     private Date createTime;
@@ -98,12 +98,12 @@ public class Order {
         this.salary = salary;
     }
 
-    public String getPalce() {
-        return palce;
+    public String getPlace() {
+        return place;
     }
 
-    public void setPalce(String palce) {
-        this.palce = palce;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     public String getSex() {
