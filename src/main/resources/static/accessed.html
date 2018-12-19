@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>校园兼职网</title>
+
+    <link href="vendors/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+    <link href="vendors/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/accessed.css" rel="stylesheet"/>
+    <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+</head>
+<body BGCOLOR="white">
+<div class="Top">
+    <img src="image/PartTimePlatform.jpg">
+    <a href=""><img src="image/Navigation.jpg"></a>
+    <a href=""><img src="image/Navigation1.jpg"></a>
+    <a href=""><img src="image/Navigation2.jpg"></a>
+    <a href=""><img class="SignIn" src="image/SignIn.jpg"></a>
+</div>
+<div class="content" id="items-manager">
+
+    <div class="TopPublicity">
+        <a href=""> <img src="image/main.jpg"></a>
+    </div>
+    <div class="row cui-justify-center">
+        <div class="form">
+            <table class="table table-responsive-sm " id="ordersTable">
+                <thead>
+                <tr>
+                    <th scope="col">兼职</th>
+                    <th scope="col">发布者</th>
+                    <th scope="col">报名时间</th>
+                    <th scope="col">薪酬</th>
+                    <th scope="col">当前状态</th>
+                    <th scope="col">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(item,index) in pageItems">
+                    <td><a href="" class="alert-link">{{item.title}}</a></td>
+                   <!--<td><a href="#" class="alert-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">示例链接</font></font></a></td>-->
+                    <td><a>{{item.name}}</a></td>
+                    <td><a>{{item.createTime}}</a></td>
+                    <td><a>{{item.salary}}</a></td>
+                    <td><button class="btn btn-brand btn-sm " id="status1" type="button">
+                        <span id="status">{{item.status}}</span>
+                    </button></td>
+                    <td><button class="btn btn-brand btn-sm " id="status2" type="button" >
+                        <span id="operation">删除</span>
+                    </button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="list">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" v-on:click="previous()" aria-label="Previous">
+                    <span aria-hidden="true">上一页</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <!--分页-->
+            <li class="page-item" v-for="n in pageCount"
+                v-bind:class="n==paging.offset+1 ? 'active' : ''">
+                <a class="page-link" v-on:click="paging.offset = n-1">{{n}}</a>
+            </li>
+            <li class="page-item" v-if="isPageMore">
+                <a class="page-link" v-on:click="more()">...</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" v-on:click="next()" aria-label="Next">
+                    <span aria-hidden="true">下一页</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<footer class="app-footer">
+    <div>
+        <span>&copy;2015-2018兼职</span>
+    </div>
+    <div style="margin: 0 auto">
+        <a href="">关于我们&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <a href="">联系我们</a>
+    </div>
+    <div class="ml-auto">
+        <span>京ICP备15058772号</span>
+        <a href=""></a>
+    </div>
+</footer>
+</div>
+
+<script src="vendors/jquery/js/jquery.min.js"></script>
+<script src="vendors/popper.js/js/popper.min.js"></script>
+<script src="vendors/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendors/pace-progress/js/pace.min.js"></script>
+<script src="vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
+<script src="vendors/@coreui/coreui/js/coreui.min.js"></script>
+<script src="vendors/vue/vue.js"></script>
+<script>
+    var orders = [];
+    var ordersVue = null;
+    var pagingData = {
+        total: 0,
+        size: 10,
+        offset: 0
+    };
+    var serviceUrl = {
+        list: "/orders"
+    };
+    var selectResult = function (requestUrl) {
+        $.ajax({
+            url : requestUrl,
+            dataType: "json",
+            success : function (response) {
+                orders.splice(0, orders.length);
+                for (var i = 0; i < response.length; i++) {
+                    orders.push(response[i]);
+                }
+            }
+        });
+    };
+
+    $(function () {
+
+        $.ajax({
+            url : "/length",
+            success : function (response) {
+                pagingData.total = response;
+            }
+        });
+        var listUrlForCurrentPage = serviceUrl.list + "?offset=" + pagingData.offset + "&size=" + pagingData.size;
+        $.getJSON(listUrlForCurrentPage, function (json) {
+            orders = json;
+            ordersVue = new Vue({
+                el: '#items-manager',
+                data: {
+                    items: orders,
+                    paging: pagingData
+                },
+                computed: {
+                    pageItems: function () {
+                        return this.items.filter(function (value, index) {
+                            return ((index >= pagingData.offset * pagingData.size) && (index < (pagingData.offset + 1) * pagingData.size));
+                        });
+                    },
+                    pageCount: function () {
+                        var pageCount = Math.ceil(this.paging.total / this.paging.size);
+                        return pageCount;
+                    },
+                    isPageMore: function (pageNumber) {
+                        var pageCount = Math.ceil(this.paging.total / this.paging.size);
+                        return pageCount > 10;
+                    }
+                },
+                methods: {
+                    previous: function () {
+                        if (this.paging.offset > 0) {
+                            this.paging.offset -= 1;
+                        }
+                    },
+                    next: function () {
+                        if (this.paging.offset < (this.pageCount - 1)) {
+                            this.paging.offset += 1;
+                        }
+                    }
+                }
+            });
+            ordersVue.$watch('paging.size', function (newVal, oldVal) {
+
+            });
+            ordersVue.$watch('paging.offset', function (newVal, oldVal) {
+
+            });
+        });
+    });
+    $(function () {
+        var statusText=document.getElementById("status").innerText;
+        if(statusText=="进行中"){
+            $('#status1').addClass('btn-xing');
+            $('#status2').addClass('btn-youtube');
+            $('#operation').text("取消");
+        }if(statusText=="已完成"){
+            $('#status1').addClass('btn-spotify');
+            $('#status2').addClass('btn-html5');
+            $('#operation').text("删除");
+        }
+    })
+</script>
+</body>
+</html>

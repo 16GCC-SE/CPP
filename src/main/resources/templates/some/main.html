@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,207 +9,127 @@
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
     <title>校园兼职网</title>
 
-    <link th:href="@{/vendors/@coreui/icons/css/coreui-icons.min.css}" rel="stylesheet">
-    <link th:href="@{/vendors/flag-icon-css/css/flag-icon.min.css}" rel="stylesheet">
-    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
-    <link th:href="@{/vendors/simple-line-icons/css/simple-line-icons.css}" rel="stylesheet">
+    <link href="vendors/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+    <link href="vendors/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
     <!-- Main styles for this application-->
-    <link th:href="@{/css/style.css}" rel="stylesheet">
-    <link th:href="@{/css/main.css}" rel="stylesheet"/>
-    <link th:href="@{/vendors/pace-progress/css/pace.min.css}" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet"/>
+    <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
 </head>
-<style>
-
-
-    /*导航栏样式*/
-    @font-face {
-        font-family: hanzhen;
-        src: url("static/hanzhen.ttf");
-    }
-
-    .head {
-        width: 100%;
-        background-color: #B5B4B2;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .header_body {
-        display: flex;
-        justify-content: center;
-    }
-
-    .around {
-        padding: 0px 50px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .until {
-        background-color: #C3C3C3;
-        padding: 10px 70px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        align-content: flex-end;
-    }
-
-    .until:hover {
-        background-color: #CFCFCF;
-    }
-
-    .until > img {
-        width: 40px;
-        height: 40px
-    }
-
-    .select_until {
-        background-color: #F2E61E;
-        padding: 0px 60px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .select_until > img {
-        width: 47px;
-        height: 47px;
-    }
-
-    /*导航栏样式*/
-
-
-</style>
 <body BGCOLOR="white">
-<!--<div class="Top">-->
-    <!--<img src="../../image/PartTimePlatform.jpg">-->
-    <!--<a href=""><img src="../../image/Navigation.jpg"></a>-->
-    <!--<a href=""><img src="../../image/Navigation1.jpg"></a>-->
-    <!--<a href="/order/goRelease"><img src="../../image/Navigation2.jpg"></a>-->
-    <!--<a href=""><img class="SignIn" src="../../image/SignIn.jpg"></a>-->
-<!--</div>-->
-<header class="head">
-    <div class="around">
-        <img src="../../image/icon/home.svg" width="50px" height="50px">
-        <div style="font-family: hanzhen;font-size: 1.5em;color: white">兼职平台</div>
-    </div>
-    <div class="header_body">
-        <div class="until">
-            <img src="../../image/icon/flag.svg">
-        </div>
-        <div class="select_until">
-            <img src="../../image/icon/sign_select.svg">
-            <div style="color: white;font-family: hanzhen">找兼职</div>
-        </div>
-        <div class="until">
-            <img src="../../image/icon/letter.svg" onclick="release()">
-        </div>
-    </div>
-    <div class="around">
-        <img src="../../image/icon/my.svg" width="40px" height="40px">
-    </div>
-</header>
-<div class="content">
+<div class="Top">
+    <img src="image/PartTimePlatform.jpg">
+    <a href=""><img src="image/Navigation.jpg"></a>
+    <a href=""><img src="image/Navigation1.jpg"></a>
+    <a href=""><img src="image/Navigation2.jpg"></a>
+    <a href=""><img class="SignIn" src="image/SignIn.jpg"></a>
+</div>
+<div class="content" id="items-manager">
     <div class="college">
         广州商学院校园兼职平台
     </div>
     <div class="TopPublicity">
-        <a href=""> <img src="../../image/main.jpg"></a>
+        <a href=""> <img src="image/main.jpg"></a>
     </div>
     <div class="publicity">
         找校园兼职，上兼职平台，找你所找
     </div>
     <div class="type">
         类型：
-        <a href="">带课员 &nbsp;</a>
-        <a href="">代拿员 &nbsp;</a>
-        <a href="">送餐员 &nbsp;</a>
-        <a href="">宣传员 &nbsp;</a>
-        <a href="">校园活动 &nbsp;</a>
-        <a href="">校外 &nbsp;</a>
-        <a href="">长工 &nbsp;</a>
-        <a href="">短工 &nbsp;</a>
-        <a href="">其他 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '代课员')">代课员 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '代拿员')">代拿员 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '送餐员')">送餐员 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '宣传员')">宣传员 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '校园活动')">校园活动 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '校外')">校外 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '长工')">长工 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '短工')">短工 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '其他')">其他 &nbsp;</a>
     </div>
     <!--类型选项-->
     <div class="Requirement">
         <div class="btn-group ml-2">
-            <button class="btn btn-sm btn-secondary" type="button">
-                <font>结算方式</font>
+            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                <font id="jiesuan">结算方式</font>
+                <div class="dropdown-menu" x-placement="bottom-start"
+                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
+                    <a class="dropdown-item"  onclick="selectResult('/settlement', '次结',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">次结</font></font></a>
+                    <a class="dropdown-item"  onclick="selectResult('/settlement', '日结',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">日结</font></font></a>
+                    <a class="dropdown-item"  onclick="selectResult('/settlement', '月结',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">月结</font></font></a>
+                </div>
             </button>
-            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            </button>
-            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次结</font></font></a>
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日结</font></font></a>
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">月结</font></font></a>
-            </div>
         </div>
         <!--第一个下拉-->
         <div class="btn-group ml-2">
-            <button class="btn btn-sm btn-secondary" type="button">
-                <font>性别需求</font>
+            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <font id="xingbie">性别需求</font>
+                <div class="dropdown-menu" x-placement="bottom-start"
+                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
+                    <a class="dropdown-item"  onclick="selectResult('/sex', '男',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">男</font></font></a>
+                    <a class="dropdown-item"  onclick="selectResult('/sex', '女',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">女</font></font></a>
+                </div>
             </button>
-            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            </button>
-            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">男</font></font></a>
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">女</font></font></a>
-            </div>
         </div>
         <!--第二个下拉-->
         <div class="btn-group ml-2">
             <button class="btn btn-sm btn-secondary" type="button">
                 <font>工资最高</font>
             </button>
-            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            </button>
-            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">工资最低</font></font></a>
-            </div>
         </div>
         <!--第三个下拉-->
         <div class="btn-group ml-2">
-            <button class="btn btn-sm btn-secondary" type="button">
-                <font>校方发布</font>
+            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <font >发布方</font>
+                <div class="dropdown-menu" x-placement="bottom-start"
+                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
+                    <a class="dropdown-item" onclick="selectResult('/jobtype', 'person',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">个人发布</font></font></a>
+                    <a class="dropdown-item" onclick="selectResult('/jobtype', 'school',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">校方发布</font></font></a>
+                    <a class="dropdown-item"  onclick="selectResult('/jobtype', 'merchant',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">商家发布</font></font></a>
+                </div>
             </button>
-            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            </button>
-            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">个人发布</font></font></a>
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商家发布</font></font></a>
-            </div>
         </div>
         <!--第四个下拉-->
         <div class="btn-group ml-2">
             <button class="btn btn-sm btn-secondary" type="button">
                 <font>最新发布</font>
             </button>
-            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            </button>
-            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最晚发布</font></font></a>
-            </div>
         </div>
-        <!--第五个下拉-->
     </div>
+    <!--第五个下拉-->
     <div class="task">
         <div class="form">
-            <table class="table table-responsive-sm table-bordered" id="userTable"  >
+            <table class="table table-responsive-sm table-bordered" id="ordersTable">
                 <tbody>
-                <tr  v-for="(item,index)  in items">
-                    <td><{{item.status}}>&nbsp;{{item.mission}}</td>
-                    <td> <i class="icon-user">{{item.number}}</i></td>
+                <tr v-for="(item,index) in pageItems">
+                    <td>
+                        <button class="btn btn-pill btn-success btn-sm" type="button">{{item.classification}}</button>&nbsp;<a
+                            v-bind:href="'javascript:jumpOrderDetail('+index+')'">{{item.title}}</a></td>
+                    <td><i class="icon-user">{{item.needNumber}}</i></td>
                     <td><i class="cui-yen">{{item.salary}}</i></td>
                     <td>
-                        <i class="fa fa-clock-o">{{item.time}}</i>
+                        <i class="fa fa-clock-o">{{item.createTime}}</i>
                     </td>
-                    <!--<td>-->
-                    <!--<button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#modify" v-bind:data-rowindex="index" aria-pressed="true"><SPAN class="icons font-1xl cui-brush"></SPAN>&nbsp;编辑</button>-->
-                    <!--<button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#delete" v-bind:data-rowindex="index" aria-pressed="true"><SPAN class="icons font-1xl cui-trash" ></SPAN>&nbsp;删除</button>-->
-                    <!--</td>-->
                 </tr>
                 </tbody>
             </table>
@@ -217,26 +137,28 @@
         <div class="RightPublicity"></div>
     </div>
     <div class="list">
-    <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="#">上一页</a>
-        </li>
-        <li class="page-item active">
-            <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">4</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">下一页</a>
-        </li>
-    </ul>
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" v-on:click="previous()" aria-label="Previous">
+                    <span aria-hidden="true">上一页</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <!--分页-->
+            <li class="page-item" v-for="n in pageCount"
+                v-bind:class="n==paging.offset+1 ? 'active' : ''">
+                <a class="page-link" v-on:click="paging.offset = n-1">{{n}}</a>
+            </li>
+            <li class="page-item" v-if="isPageMore">
+                <a class="page-link" v-on:click="more()">...</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" v-on:click="next()" aria-label="Next">
+                    <span aria-hidden="true">下一页</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
     </div>
 </div>
 <footer class="app-footer">
@@ -252,31 +174,116 @@
         <a href=""></a>
     </div>
 </footer>
-<script th:src="@{/vendors/jquery/js/jquery.min.js}"></script>
-<script th:src="@{/vendors/popper.js/js/popper.min.js}"></script>
-<script th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
-<script th:src="@{/vendors/pace-progress/js/pace.min.js}"></script>
-<script th:src="@{/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js}"></script>
-<script th:src="@{/vendors/@coreui/coreui/js/coreui.min.js}"></script>
+</div>
+
+<script src="vendors/jquery/js/jquery.min.js"></script>
+<script src="vendors/popper.js/js/popper.min.js"></script>
+<script src="vendors/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendors/pace-progress/js/pace.min.js"></script>
+<script src="vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
+<script src="vendors/@coreui/coreui/js/coreui.min.js"></script>
+<script src="vendors/vue/vue.js"></script>
 <script>
-    $.ajax({
-        url:"/missions",
-        type:"GET",
-        success:function (response) {
-            mission = response;
-            var example1 = new Vue({
-                el: '#userTable',
+    var orders = [];
+    var ordersVue = null;
+    var rowIndex;
+    var pagingData = {
+        total: 0,
+        size: 10,
+        offset: 0
+    };
+    var serviceUrl = {
+        list: "/orders"
+    };
+    function selectResult(requestUrl, param,object) {
+        var txt=object.innerText;
+         $(object).parent('div').parent('button').find('font').text(txt);
+        $.ajax({
+            url: requestUrl,
+            type: 'POST',
+            data: param,
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (response) {
+                orders.splice(0, orders.length);
+                for (var i = 0; i < response.length; i++) {
+                    orders.push(response[i]);
+                }
+            }
+        });
+    };
+
+    function jumpOrderDetail(index) {
+        rowIndex = index;
+        var order = orders[rowIndex];
+        $.ajax({
+            url : "/orderdetail",
+            type: 'POST',
+            data: order.id,
+            contentType:"application/json;charset=UTF-8",
+            dataType: "json",
+            success : function (response) {
+                sessionStorage.setItem("orderDetail", JSON.stringify(response));
+                window.location = ("detail.html");
+            }
+        });
+    }
+
+    $(function () {
+        $.ajax({
+            url: "/length",
+            success: function (response) {
+                pagingData.total = response;
+            }
+        });
+        var listUrlForCurrentPage = serviceUrl.list + "?offset=" + pagingData.offset + "&size=" + pagingData.size;
+        $.getJSON(listUrlForCurrentPage, function (json) {
+            orders = json;
+            ordersVue = new Vue({
+                el: '#items-manager',
                 data: {
-                    items: mission
+                    items: orders,
+                    paging: pagingData
+                },
+                computed: {
+                    pageItems: function () {
+                        return this.items.filter(function (value, index) {
+                            return ((index >= pagingData.offset * pagingData.size) && (index < (pagingData.offset + 1) * pagingData.size));
+                        });
+                    },
+                    pageCount: function () {
+                        var pageCount = Math.ceil(this.paging.total / this.paging.size);
+                        return pageCount;
+                    },
+                    isPageMore: function (pageNumber) {
+                        var pageCount = Math.ceil(this.paging.total / this.paging.size);
+                        return pageCount > 10;
+                    }
+                },
+                methods: {
+                    previous: function () {
+                        if (this.paging.offset > 0) {
+                            this.paging.offset -= 1;
+                        }
+                    },
+                    next: function () {
+                        if (this.paging.offset < (this.pageCount - 1)) {
+                            this.paging.offset += 1;
+                        }
+                    },
+                    more: function () {
+
+                    }
                 }
             });
-            return;
-        }
+            ordersVue.$watch('paging.size', function (newVal, oldVal) {
+
+            });
+            ordersVue.$watch('paging.offset', function (newVal, oldVal) {
+
+            });
+        });
     });
-    
-    function release() {
-        window.open("/order/goRelease",'_self');
-    }
 </script>
 </body>
 </html>

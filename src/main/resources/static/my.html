@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>校园兼职网</title>
+
+
+    <!-- CoreUI and necessary plugins-->
+    <script src="vendors/jquery/js/jquery.min.js"></script>
+    <script src="vendors/popper.js/js/popper.min.js"></script>
+    <script src="vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendors/pace-progress/js/pace.min.js"></script>
+    <script src="vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
+    <script src="vendors/@coreui/coreui/js/coreui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+
+    <link href="vendors/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+    <link href="vendors/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+
+</head>
+<style>
+    /*导航栏样式*/
+    @font-face {
+        font-family: hanzhen;
+        src: url("hanzhen.ttf");
+    }
+
+    .head {
+        width: 100%;
+        background-color: #B5B4B2;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .header_body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .around {
+        padding: 0px 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .until {
+        background-color: #C3C3C3;
+        padding: 10px 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: flex-end;
+    }
+
+    .until:hover {
+        background-color: #CFCFCF;
+    }
+
+    .until > img {
+        width: 40px;
+        height: 40px
+    }
+
+    .select_until {
+        background-color: #F2E61E;
+        padding: 0px 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .select_until > img {
+        width: 47px;
+        height: 47px;
+    }
+
+    /*导航栏样式*/
+
+
+</style>
+<body style="background-color: white;display: flex;flex-direction: column;justify-content: center">
+<header class="head">
+    <div class="around">
+        <img src="image/icon/home.svg" width="50px" height="50px">
+        <div style="font-family: hanzhen;font-size: 1.5em;color: white">兼职平台</div>
+    </div>
+    <div class="header_body">
+        <div class="until">
+            <img src="image/icon/flag.svg">
+        </div>
+        <div class="select_until">
+            <img src="image/icon/sign_select.svg">
+            <div style="color: white;font-family: hanzhen">找兼职</div>
+        </div>
+        <div class="until">
+            <img src="image/icon/letter.svg">
+        </div>
+    </div>
+    <div class="around">
+        <img src="image/icon/my.svg" width="40px" height="40px">
+    </div>
+</header>
+
+<form  id="myForm" >
+    <div class="col-md-12">
+        <div class="" style=" margin-top:150px;display:flex;justify-content:center;width:100%">
+            <!--头像-->
+            <div style="margin-right:50px;">
+                <img src="image/head.jpg" style="border-radius:50%" >
+                <div class="text-center" style="font-size:22px; font-weight:600; padding:10px 0px;">兼职狂人</div>
+            </div>
+            <!--个人资料-->
+            <div class="col-md-2" style="padding-right:0px">
+                <div class="col-sm-12" style="padding-right:0">
+                    <div class="form-group">
+                        <label for="Email">邮箱</label>
+                        <input class=" form-control" id="Email" type="text" name="Email" placeholder="Enter your Email" required>
+                        <div class=" invalid-feedback">
+                            邮箱不能为空
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12"  style="padding-right:0">
+                    <div class="form-group">
+                        <label for="phone">手机号码</label>
+                        <input class="form-control" id="phone" type="text" name="phone"  placeholder="XXX XXXX XXXX" required>
+                        <div class="invalid-feedback">
+                            手机号码不能为空
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12"  style="padding-right:0">
+                    <label for="sex">性别</label>
+                    <select class="form-control" id="sex" name="sex">
+                        <option>男</option>
+                        <option>女</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!--按钮-->
+        <div class="col-md-8 text-right">
+            <div style="margin-top:10px" >
+                <button class="btn btn-success w-20" style="height:40px width:100" type="submit" data-toggle="modal" data-target="#Modal">修改密码</button>
+            </div>
+            <div style="margin-top:10px" >
+                <button class="btn btn-success w-20" style="height:40px" type="submit" Onclick="save">确认修改</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+<!--弹出框-->
+<form action="/test/register" method="post" enctype="multipart/form-data" class="needs-validation" id="passwordForm" >
+<div class="modal fade show" style="margin-top:100px" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+    <div class="modal-dialog modal-success" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">修改密码</font></font></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">×</font></font></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="nf-password">原始密码：</label>
+                    <input class="form-control" id="nf-password" type="password" name="nf-password" placeholder="输入当前密码" required>
+                    <div class="invalid-feedback">
+                        请输入正确的密码.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nf-newpassword">新密码：</label>
+                    <input class="form-control" id="nf-newpassword" type="password" name="nf-newpassword" placeholder="输入新密码" required>
+                    <div class="invalid-feedback">
+                        新密码不能为空
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nf-repassword">再次输入密码：</label>
+                    <input class="form-control" id="nf-repassword" type="password" name="nf-repassword" placeholder="再次输入密码" required>
+                    <div class="invalid-feedback">
+                        再次输入不能为空
+                    </div>
+                </div>
+                <!--<div class="input-group mb-3">-->
+                    <!--<div class="input-group-prepend">-->
+                                <!--<span class="input-group-text">-->
+                                    <!--<i class="icon-user"></i>-->
+                                <!--</span>-->
+                    <!--</div>-->
+                    <!--<input class="form-control" type="text" id="name" name="name" placeholder="请输入用户名" required>-->
+                    <!--<div class="invalid-feedback">-->
+                        <!--用户名不能为空！-->
+                    <!--</div>-->
+                <!--</div>-->
+
+
+                <!--<div class="input-group mb-3">-->
+                    <!--<div class="input-group-prepend">-->
+                    <!--<span class="input-group-text">-->
+                      <!--<i class="icons cui-lock-unlocked"></i>-->
+                    <!--</span>-->
+                    <!--</div>-->
+                    <!--<input class="form-control" type="password" id="password" name="password" placeholder="请输入密码" required>-->
+                    <!--<div class="invalid-feedback">-->
+                        <!--密码不能为空！-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="input-group mb-3">-->
+                    <!--<div class="input-group-prepend">-->
+                                <!--<span class="input-group-text">-->
+                                    <!--<i class="icons cui-lock-locked"></i>-->
+                                <!--</span>-->
+                    <!--</div>-->
+                    <!--<input class="form-control" type="password" id="rePassword" name="rePassword" placeholder="再次确认密码" required>-->
+                    <!--<div class="invalid-feedback">-->
+                        <!--再次输入密码不能为空！-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="submit" data-dismiss="modal" >关闭</button>
+                <button class="btn btn-success" type="submit" onclick="saveOn()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<!--<div class="modal " id="message-modal" tabindex="-1" role="dialog"-->
+           <!--aria-labelledby="myModalLabel"-->
+           <!--aria-hidden="true">-->
+    <!--<div class="modal-dialog  modal-danger" role="document">-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+                <!--<h4 class="modal-title" id="message-modal-title">信息</h4>-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                    <!--<span aria-hidden="true">×</span>-->
+                <!--</button>-->
+            <!--</div>-->
+            <!--<div class="modal-body font-weight-bold" id="message-modal-content">-->
+                <!--显示信息！-->
+            <!--</div>-->
+            <!--<div class="modal-footer">-->
+                <!--<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; /.modal-content &ndash;&gt;-->
+    <!--</div>-->
+    <!--&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+<!--</div>-->
+
+<script>
+    // function showMessageModal(title, content, typeClass) {
+    //     $('#message-modal-title').text(title);
+    //     $('#message-modal-content').text(content);
+    //     $('#message-modal .modal-dialog').removeClass('modal-primary');
+    //     $('#message-modal .modal-dialog').removeClass('modal-success');
+    //     $('#message-modal .modal-dialog').removeClass('modal-warning');
+    //     $('#message-modal .modal-dialog').removeClass('modal-danger');
+    //     $('#message-modal .modal-dialog').removeClass('modal-info');
+    //     if ("modal-primary" === typeClass) {
+    //         $('#message-modal .modal-dialog').addClass('modal-primary');
+    //     }
+    //     if ("modal-success" === typeClass) {
+    //         $('#message-modal .modal-dialog').addClass('modal-success');
+    //     }
+    //     if ("modal-warning" === typeClass) {
+    //         $('#message-modal .modal-dialog').addClass('modal-warning');
+    //     }
+    //     if ("modal-danger" === typeClass) {
+    //         $('#message-modal .modal-dialog').addClass('modal-danger');
+    //     }
+    //     if ("modal-info" === typeClass) {
+    //         $('#message-modal .modal-dialog').addClass('modal-info');
+    //     }
+    //     $('#message-modal').modal('show');
+    // }
+    //
+
+
+
+
+    function saveOn(){
+        var form = document.getElementById("passwordForm");
+        if (form.checkValidity() === true) {
+            return ;
+        }
+        form.classList.add('was-validated');
+    }
+
+    function save(){
+        var form = document.getElementById("myForm");
+        if (form.checkValidity() === true) {
+            return ;
+        }
+        form.classList.add('was-validated');
+    }
+
+
+
+
+    // $("#rePassword").blur(function () {
+    //     var password=$("#password").val();
+    //     var rePassword=$("#rePassword").val();
+    //     var message = [];
+    //     message[0] = password;
+    //     message[1] = rePassword;
+    //     if (password!='' && rePassword!='') {
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "/test/confirmPassword",
+    //             async:true,
+    //             contentType: 'application/json;charset=utf-8',
+    //             data: JSON.stringify(message),
+    //             dataType: "text",
+    //             success:function (data) {
+    //                 if(data==1){
+    //                     // showMessageModal("成功","正常登陆","modal-success");
+    //                 }
+    //                 else{
+    //                     showMessageModal("失败","两次输入的密码不一致","modal-danger");
+    //                 }
+    //             }
+    //         })
+    //     }
+    // })
+    //
+
+</script>
+</body>
+
+</html>

@@ -11,11 +11,12 @@ body{
 .table>tbody>tr>td{
     border:none;
     text-align: center;
+    border-bottom: gray solid 1px;
 }
 .table>thead>tr>th{
     text-align: center;
     border: none;
-    border-bottom: gray solid 1px;
+
 }
 .Top{
     background-color: #c8ced3;
@@ -35,6 +36,8 @@ body{
 .TopPublicity{
     text-align:center;
     width: 75%;
+    margin-bottom: 2%;
+    margin-top: 2%;
     margin-left: 10%;
 }
 .publicity{
@@ -68,42 +71,10 @@ body{
 }
 .form{
     width:70%;
-    height: 500px;
-    border: 1px solid #d1dbe1;
     margin-left: 10%;
     display: flex;
     margin-top: 0.5%;
     float: left;
-}
-.form li{
-    display: flex;
-    border-bottom:1px solid #000;
-    height:50px;
-    margin: 0;
-    line-height: 50px;
-}
-.RightPublicity{
-    display: flex;
-    width:15%;
-    height: 500px;
-    border: 1px solid #d1dbe1;
-    float: right;
-    margin-right: 15%;
-    margin-left: 0.5%;
-    margin-top: 0.5%;
-}
-.wrap{
-    width: 50px;
-    float: left;
-    height: 100%;
-}
-.xc{
-    float: left;
-}
-.Number{
-    height: 100%;
-    float: left;
-    padding-left: 150px;
 }
 .list{
     margin-left: 10%;

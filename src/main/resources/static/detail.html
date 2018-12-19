@@ -26,102 +26,89 @@
     <a href=""><img src="image/Navigation2.jpg"></a>
     <a href=""><img class="SignIn" src="image/SignIn.jpg"></a>
 </div>
-<div class="content">
+<div class="content" id="item-manager">
     <div style="margin-top:1% ">
     <span class="college">
         <A HREF=""> 广州商学院校园兼职平台</A>
-        <A > &nbsp;>&nbsp;兼职详情</A>
+        <A> &nbsp;>&nbsp;兼职详情</A>
     </span>
     </div>
-    <div>
-    <div CLASS="jianzhi">
-        <span>
-        <h3 style="margin-top: 3%;">&nbsp;&nbsp;&nbsp;天猫优惠券代理，手把手带你赚钱</h3><br>
-            <a style="margin-left: 5%"><i class="fa fa-yen fa-lg " style="color: red">192元</i></a>
-            <a style="font-size: 80%">/小时</a>
-            <a style="margin-left: 23%">月结&nbsp;&nbsp;|&nbsp;&nbsp;1000人&nbsp;&nbsp;|&nbsp;&nbsp;2018-11-28</a>
-               <button class="btn btn-square btn-warning" type="button" style="margin-left: 5%;margin-top: 10%">
+</div>
+    <div class="row cui-justify-center">
+        <div class="col-md-7">
+            <div CLASS="jianzhi">
+        <span style="width: 100%">
+        <h3 style="margin-top: 3%;">&nbsp;&nbsp;&nbsp;{{item.title}}</h3><br>
+            <a style="margin-left: 5%"><i class="fa fa-yen fa-lg " style="color: red">{{item.classification}}</i></a>
+            <a style="font-size: 80%">{{item.classification}}</a>
+            <a style="margin-left: 23%">{{item.settlementMethod}}&nbsp;&nbsp;|&nbsp;&nbsp;{{item.needNumber}}人&nbsp;&nbsp;|&nbsp;&nbsp;{{item.createTime}}</a>
+            <br>
+               <button class="btn btn-square btn-warning" type="button" style="margin-left: 5%;margin-top: 5%">
 <i class="fa fa-lightbulb-o"></i>&nbsp;领取任务</button>
 
         </span>
-    </div>
-    <div class="xiangqing">
-        <span>
-        <h4 >&nbsp;&nbsp;&nbsp;兼职详情</h4>
-            <HR style="width: 300px;margin-left: 5%">
-            <button class="btn btn-lg btn-success" type="button">男</button>
-        </span>
-    </div>
-    </div>
-    <div class="list">
-    <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="#">上一页</a>
-        </li>
-        <li class="page-item active">
-            <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">4</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">下一页</a>
-        </li>
-    </ul>
-    </div>
-</div>
-<footer class="app-footer">
-    <div>
-        <span>&copy;2015-2018兼职</span>
-    </div>
-    <div style="margin: 0 auto">
-        <a href="">关于我们&nbsp;&nbsp;&nbsp;&nbsp;</a>
-        <a href="">联系我们</a>
-    </div>
-    <div class="ml-auto">
-    <span>京ICP备15058772号</span>
-    <a href=""></a>
-    </div>
-</footer>
-<!--<footer class="app-footer" style="margin-left: 10%">-->
-     <!--<div style="float:left ">-->
-    <!--<a  href="">2015-2018兼职</a>-->
-     <!--</div>-->
-    <!--<div style="float: contour" >-->
-    <!--<a href="">关于我们&nbsp;</a>-->
-    <!--<a href="">联系我们&nbsp;</a>-->
-    <!--</div>-->
-    <!--<div style="float: right" >-->
-    <!--<a href="">京ICP备15058772号&nbsp;</a>-->
-    <!--</div>-->
-<!--</footer>-->
+            </div>
+            <div class="xiangqing">
+        <span style="width: 100%">
+        <h4 style="margin-left: 5%">兼职详情</h4>
+            <HR style="width: 70%;margin-left: 5%">
 
+          <button class="btn btn-pill btn-success btn-sm" type="button">{{item.sex}}</button>
+            <button class="btn btn-pill btn-success btn-sm" type="button">外卖员</button>
+            <button class="btn btn-pill btn-success btn-sm" type="button">{{item.needNumber}}人</button>
+            <button class="btn btn-pill btn-success btn-sm" type="button">{{item.settlementMethod}}</button>
+            <br>
+            <p style="font-size: large;margin-left: 5%">工作地点：{{item.place}}</p>
+            <p style="font-size: large;margin-left: 5%">工作内容：</p>
+            <p style="margin-left: 7%;line-height: 25px">工作职责：<br>{{item.content}}</p>
+        </span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div CLASS="boss">
+                <div style="text-align: center">
+                    <img src="image/head.jpg" style="width: 100px;height: 100px;">
+                </div>
+                <div style="padding: 10px;text-align: center">
+                    <h4>广商勤管中心</h4>
+                    <br><br>
+                    <a>联系方式：17827414568</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="app-footer">
+        <div>
+            <span>&copy;2015-2018兼职</span>
+        </div>
+        <div style="margin: 0 auto">
+            <a href="">关于我们&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="">联系我们</a>
+        </div>
+        <div class="ml-auto ">
+            <span>京ICP备15058772号</span>
+            <a href=""></a>
+        </div>
+    </footer>
+</div>
 <script src="vendors/jquery/js/jquery.min.js"></script>
 <script src="vendors/popper.js/js/popper.min.js"></script>
 <script src="vendors/bootstrap/js/bootstrap.min.js"></script>
 <script src="vendors/pace-progress/js/pace.min.js"></script>
 <script src="vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
 <script src="vendors/@coreui/coreui/js/coreui.min.js"></script>
+<script src="vendors/vue/vue.js"></script>
 <script>
-    $.ajax({
-        url:"/missions",
-        type:"GET",
-        success:function (response) {
-            mission = response;
-            var example1 = new Vue({
-                el: '#userTable',
-                data: {
-                    items: mission
-                }
-            });
-            return;
+    var orderDetail = JSON.parse(sessionStorage.getItem("orderDetail"));
+    var orderDetailVue = null;
+    orderDetailVue = new Vue({
+        el: '#item-manager',
+        data: {
+            item: orderDetail
         }
+    });
+    $(function () {
+
     });
 </script>
 </body>
