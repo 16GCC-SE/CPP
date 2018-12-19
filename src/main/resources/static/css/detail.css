@@ -21,24 +21,11 @@ body{
     text-align:center;
 
 }
-.TopPublicity{
-    text-align:center;
-    width: 75%;
-    margin-left: 10%;
-}
-.publicity{
-    margin: 10px 0 10px 0;
-    text-align:center;
-}
-.content{
-    /*text-align:center;*/
-}
-.jianzhi{
 
-    width:50%;
-    height: 70%;
+.jianzhi{
+    padding-bottom: 35px;
     border: 1px solid #d1dbe1;
-    margin-left: 10%;
+    margin-left: 15%;
     display: flex;
     margin-top: 0.5%;
 }
@@ -47,12 +34,25 @@ body{
 }
 .xiangqing{
 
-    width:50%;
-    height: 70%;
     border: 1px solid #d1dbe1;
-    margin-left: 10%;
+    margin-left: 15%;
     display: flex;
     margin-top: 0.5%;
+}
+.boss{
+    padding: 40px;
+    height: 300px;
+    border: 1px solid #d1dbe1;
+    margin-left: 1%;
+    display:inline-block;
+    margin-top: 1%;
+}
+.btn-pill{
+    margin-left: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+    font-size: small;
+
 }
 .form{
     width:70%;
@@ -80,23 +80,7 @@ body{
     margin-left: 0.5%;
     margin-top: 0.5%;
 }
-.wrap{
-    width: 50px;
-    float: left;
-    height: 100%;
-}
-.xc{
-    float: left;
-}
-.Number{
-    height: 100%;
-    float: left;
-    padding-left: 150px;
-}
 .list{
     margin-left: 10%;
     margin-top: 1%;
 }
-
-
-

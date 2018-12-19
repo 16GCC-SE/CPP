@@ -7,8 +7,13 @@ import com.sixgiants.cpp.util.UUIDutil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,30 +33,32 @@ import java.util.Date;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    //登录验证处理
+
+    //登录
+    @RequestMapping("/login")
+    public String Login(){
+        return "visitor/login.html";
+    }
+    @RequestMapping("/login_action")
+    public String login_action(){
+        return "visitor/main1.html";
+    }
+//    @RequestMapping("/not_user_login_action")
+//    public String not_user_login_action(){
+//        return "visitor/main1.html";
+//    }
+
+
     @PostMapping("/confirmName")
     @ResponseBody
     public int confirmName(@RequestBody String username){
         return userServiceImpl.confirmName(username);
     }
-    @PostMapping("/login")
-    @ResponseBody
-    public String login(@RequestBody String[] message,HttpServletRequest request,Model model){
-        return userServiceImpl.login(message,request,model);
-    }
-
-    @RequestMapping("/login_action")
-    public String login_action(HttpSession session,Model model){
-        User user = (User)session.getAttribute("user");
-        model.addAttribute("user",user);
-        return "success.html";
-    }
-
 
     //注册验证处理
     @PostMapping("/confirmPassword")
@@ -73,45 +80,48 @@ public class UserController {
     }
 
 
-    @Value("${CPP.upload.save-location}")
+    @RequestMapping("/register")
+    public String Register(Model model){
+        return "visitor/register.html";
+    }
+    @Value("${image.store}")
     private String saveLocation;
-    @PostMapping("/register")
+    @PostMapping("/register_form")
     @ResponseBody
     public void register(@RequestPart User user, @RequestPart MultipartFile[] files) throws IOException {
         Date now = new Date();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String childDirectory  = df.format(now);
 
-        String Directory = saveLocation + childDirectory;
+        String Directory = ResourceUtils.getFile("classpath:static")+"\\\\"+"upload";
         File storeDirectory = new File(Directory);
-
+        //String p = ResourceUtils.getFile("classpath:static")+"\\\\";
         if (!storeDirectory.exists()) {
             storeDirectory.mkdir();
-            for (MultipartFile file : files) {
-                Path path = Paths.get(Directory +"/" + UUIDutil.getUUID() + file.getOriginalFilename());
-                System.out.println(path);
-                file.transferTo(path);
-
-            }
         }
+        for (MultipartFile file : files) {
+            Path path = Paths.get(storeDirectory + "/" + UUIDutil.getUUID() + file.getOriginalFilename());
+            file.transferTo(path);
+            user.setHeadIcon(path.toString().replaceAll("\\\\","/"));
 
+        }
         userServiceImpl.register(user);
     }
 
     @RequestMapping("/register_action")
     public String register_action(){
-        return "redirect:/login.html";
+        return "visitor/login.html";
     }
 
-    @GetMapping("/update")
-    public String toUpdate(HttpServletRequest request, Model model){
-        return userServiceImpl.toUpdate(request,model);
-    }
+//    @GetMapping("/update")
+//    public String toUpdate(Model model){
+//        return userServiceImpl.toUpdate(model);
+//    }
 
-    @GetMapping("/update_action")
-    public String updateUser(User user,Model model,HttpServletRequest request){
-        return userServiceImpl.updateUser(user,model,request);
-    }
+//    @GetMapping("/update_action")
+//    public String updateUser(User user,Model model){
+//        return userServiceImpl.updateUser(user,model);
+//    }
 
 
     @GetMapping("/loginOut")

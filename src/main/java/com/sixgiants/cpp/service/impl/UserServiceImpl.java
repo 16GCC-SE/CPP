@@ -6,6 +6,9 @@ import com.sixgiants.cpp.util.DateFormatUtil;
 import com.sixgiants.cpp.util.MD5Util;
 import com.sixgiants.cpp.util.UUIDutil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,16 +38,11 @@ public class UserServiceImpl {
         }
     }
 
-    public String login(String message[],HttpServletRequest request,Model model){
-        String passwordMD5 = MD5Util.md5(message[1]);
-        User user = userDao.findByNameAndPsw(message[0], passwordMD5);
-        if (user!=null){
-            request.getSession().setAttribute("user",user);
-            model.addAttribute("user",user);
-            return "success";
-        }else {
-            return "not";
-        }
+    public void login(Model model){
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        User user = (User)authentication.getPrincipal();
+        model.addAttribute("user",user);
     }
 
     public int confirmPassword(String message[]){
@@ -75,31 +73,50 @@ public class UserServiceImpl {
 
 
     public void register(User user){
-        user.setPassword(MD5Util.md5(user.getPassword()));
-        user.setCreateTime(new Date());
         userDao.saveUser(user);
     }
 
-    public String toUpdate(HttpServletRequest request, Model model){
-        HttpSession ids = request.getSession();
-        User getIds = (User)ids.getAttribute("user");
+//    public String toUpdate(Model model){
+//        SecurityContext securityContext = SecurityContextHolder.getContext();
+//        Authentication authentication = securityContext.getAuthentication();
+//        User user = (User)authentication.getPrincipal();
+//
+//        model.addAttribute("user",user);
+//        return "some/update.html";
+//    }
 
-        String id = getIds.getId();
-        User user = userDao.findById(id);
-        user.setPassword("");
+    public User updateUser(User user){
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        User NewUser = (User)authentication.getPrincipal();
+//        NewUser.setName(user.getName());
+        NewUser.setEmail(user.getEmail());
+        NewUser.setPhone(user.getPhone());
+        NewUser.setSex(user.getSex());
+        userDao.updateUser(NewUser);
+//        model.addAttribute("user",NewUser);
 
-        model.addAttribute("user",user);
-        return "update.html";
+        return NewUser;
     }
 
-    public String updateUser(User user,Model model,HttpServletRequest request){
-        HttpSession createTime = request.getSession();
-        User date = (User) createTime.getAttribute("user");
-        user.setCreateTime(date.getCreateTime());
-        user.setPassword(MD5Util.md5(user.getPassword()));
-        userDao.updateUser(user);
-        model.addAttribute("user",user);
+    public int OldPassword(String password){
+        String MDpassword = MD5Util.md5(password);
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        User user = (User)authentication.getPrincipal();
+        if (!user.getPassword().equals(MDpassword)){
+            return 0;
+        }else {
+            return 1;
+        }
+    }
 
-        return "success.html";
+    public User NewPassword(User user){
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        User NewUser = (User)authentication.getPrincipal();
+        NewUser.setPassword(MD5Util.md5(user.getPassword()));
+        userDao.updatePassword(NewUser);
+        return NewUser;
     }
 }

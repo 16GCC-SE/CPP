@@ -19,22 +19,22 @@
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
     <title>CoreUI Free Bootstrap Admin Template</title>
     <!-- Icons-->
-    <link href="vendors/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
-    <link href="vendors/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link th:href="@{/vendors/@coreui/icons/css/coreui-icons.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/flag-icon-css/css/flag-icon.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/simple-line-icons/css/simple-line-icons.css}" rel="stylesheet">
     <!-- Main styles for this application-->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/vendors/pace-progress/css/pace.min.css}" rel="stylesheet">
 </head>
-<body class="app flex-row align-items-center" style="background-image: url('image/GZCC.jpg');background-position:center; background-repeat:no-repeat; " >
+<body class="app flex-row align-items-center" style="background-image: url('../../image/GZCC.jpg');background-position:center; background-repeat:no-repeat; " >
 <div class="container" >
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card-group">
                 <div class="card p-4" STYLE="opacity: 0.9;" >
-                    <div class="card-body" th:each="user : ${user}" >
-                        <form action="/test/login_action" method="post" enctype="multipart/form-data" class="needs-validation" id="loginForm">
+                    <div class="card-body" >
+                        <form action="/test/login/form" method="post" enctype="multipart/form-data" class="needs-validation" id="loginForm">
                         <h1><i class="fa cui-yen fa-lg mt-4" style="color:goldenrod"></i> 校园兼职平台</h1>
                         <p class="text-muted">使用用户名和密码登录</p>
                         <div class="input-group mb-3">
@@ -43,8 +43,7 @@
                       <i class="icon-user"></i>
                     </span>
                             </div>
-                            <span id="n"></span>
-                            <input class="form-control" type="text" placeholder="用户名" size="12" id="name" name="name" th:value="${user.name}" required>
+                            <input class="form-control" type="text" placeholder="用户名" size="12" id="username" name="username" required>
                              <div class="invalid-feedback" >
                             用户名不能为空！
                         </div>
@@ -75,7 +74,8 @@
                   <div class="col-6 text-right" >
                     <button class="btn btn-link px-0" type="button" style="float:left;">忘记密码?</button>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <button class="btn btn-link px-0" type="button" style="float:right;" onclick="register()">立即注册</button>
+                      <!--<button class="btn btn-link px-0" type="button" style="float:right;" onclick="register()">立即注册</button>-->
+                      <a class="btn-link" href="/user/register" style="float:right;">立即注册</a>
                   </div>
                         </div>
                             </form>
@@ -110,12 +110,12 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- CoreUI and necessary plugins-->
-<script src="vendors/jquery/js/jquery.min.js"></script>
-<script src="vendors/popper.js/js/popper.min.js"></script>
-<script src="vendors/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendors/pace-progress/js/pace.min.js"></script>
-<script src="vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
-<script src="vendors/@coreui/coreui/js/coreui.min.js"></script>
+<script th:src="@{/vendors/jquery/js/jquery.min.js}"></script>
+<script th:src="@{/vendors/popper.js/js/popper.min.js}"></script>
+<script th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendors/pace-progress/js/pace.min.js}"></script>
+<script th:src="@{/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/vendors/@coreui/coreui/js/coreui.min.js}"></script>
 <script>
     function showMessageModal(title, content, typeClass) {
         $('#message-modal-title').text(title);
@@ -144,27 +144,22 @@
     }
 
    function loginOn(){
-       var username=$("#name").val();
+       var username=$("#username").val();
        var password=$("#password").val();
-       var user = [];
-       user[0]=username;
-       user[1]=password;
        var form = document.getElementById('loginForm');
        if (form.checkValidity() === true) {
            $.ajax({
                type: "POST",
-               url: "/test/login",
-               contentType: 'application/json;charset=utf-8',
-               data: JSON.stringify(user),
-               dataType: "text",
+               url: "/visitor/login/form",
+               data:"username="+username+"&password="+password,
                success:function (data){
                    console.log(data);
-                   if (data=="not"){
-                       showMessageModal("失败","用户名或密码错误","modal-danger");
-                   }else {
-                       window.open('/test/login_action','_self');
-                   }
-
+                   window.open("/user/login_action",'_self');
+                   // if (data==""){
+                   //     showMessageModal("失败","用户名或密码错误","modal-danger");
+                   // }else {
+                   //     window.open('/test/login_action','_self');
+                   // }
                }
            })
            return ;
@@ -172,16 +167,12 @@
        form.classList.add('was-validated');
        }
 
-   function register() {
-       window.location.href="register.html";
-   }
-
     $("#name").blur(function () {
         var username=$("#name").val();
         if (username!='') {
             $.ajax({
                 type: "POST",
-                url: "/test/confirmName",
+                url: "/user/confirmName",
                 async:true,
                 contentType: 'application/json',
                 data: username,

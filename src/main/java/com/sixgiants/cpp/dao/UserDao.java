@@ -2,9 +2,12 @@ package com.sixgiants.cpp.dao;
 
 import com.sixgiants.cpp.entity.User;
 import com.sixgiants.cpp.mapper.UserMapper;
+import com.sixgiants.cpp.util.MD5Util;
 import com.sixgiants.cpp.util.UUIDutil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.Date;
 
 @Repository
 public class UserDao {
@@ -21,6 +24,9 @@ public class UserDao {
 
     public void saveUser(User user){
         user.setId(UUIDutil.getUUID());
+        user.setPassword(MD5Util.md5(user.getPassword()));
+        user.setCreateTime(new Date());
+        user.setRole("user");
         userMapper.saveUser(user);
     }
 
@@ -30,5 +36,9 @@ public class UserDao {
 
     public User findById(String id){
         return userMapper.findById(id);
+    }
+
+    public void updatePassword(User user){
+        userMapper.updatePassword(user);
     }
 }

@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>前端框架</title>
 
 
     <!-- CoreUI and necessary plugins-->
-    <script src="vendors/jquery/js/jquery.min.js"></script>
-    <script src="vendors/popper.js/js/popper.min.js"></script>
-    <script src="vendors/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendors/pace-progress/js/pace.min.js"></script>
-    <script src="vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
-    <script src="vendors/@coreui/coreui/js/coreui.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script th:src="@{/vendors/jquery/js/jquery.min.js}"></script>
+    <script th:src="@{/vendors/popper.js/js/popper.min.js}"></script>
+    <script th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/vendors/pace-progress/js/pace.min.js}"></script>
+    <script th:src="@{/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js}"></script>
+    <script th:src="@{/vendors/@coreui/coreui/js/coreui.min.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js}"></script>
 
 
-    <link href="vendors/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
-    <link href="vendors/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link th:href="@{/vendors/@coreui/icons/css/coreui-icons.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/flag-icon-css/css/flag-icon.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/simple-line-icons/css/simple-line-icons.css}" rel="stylesheet">
     <!-- Main styles for this application-->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/vendors/pace-progress/css/pace.min.css}" rel="stylesheet">
 
 </head>
 <style>
@@ -30,7 +30,7 @@
     /*导航栏样式*/
     @font-face {
         font-family: hanzhen;
-        src: url("hanzhen.ttf");
+        src: url("static/hanzhen.ttf");
     }
 
     .head {
@@ -91,26 +91,26 @@
 <body style="background-color: white;display: flex;flex-direction: column;justify-content: center">
 <header class="head">
     <div class="around">
-        <img src="image/icon/home.svg" width="50px" height="50px">
+        <img src="../../image/icon/home.svg" width="50px" height="50px">
         <div style="font-family: hanzhen;font-size: 1.5em;color: white">兼职平台</div>
     </div>
     <div class="header_body">
         <div class="until">
-            <img src="image/icon/flag.svg">
-        </div>
-        <div class="select_until">
-            <img src="image/icon/sign_select.svg">
-            <div style="color: white;font-family: hanzhen">找兼职</div>
+            <img src="../../image/icon/flag.svg">
         </div>
         <div class="until">
-            <img src="image/icon/letter.svg">
+            <img src="../../image/icon/sign.svg" onclick="main()">
+        </div>
+        <div class="select_until">
+            <img src="../../image/icon/letter_select.svg">
+            <div style="color: white;font-family: hanzhen">发布兼职</div>
         </div>
     </div>
     <div class="around">
-        <img src="image/icon/my.svg" width="40px" height="40px">
+        <img src="../../image/icon/my.svg" width="40px" height="40px" onclick="sign()">
     </div>
 </header>
-<nav class="text-center p-5"><img src="image/title.jpg"></nav>
+<nav class="text-center p-5"><img src="../../image/title.jpg"></nav>
 
 <article style="width:1000px" class="align-self-center text-center">
     <section>
@@ -215,9 +215,57 @@
 <footer>
 
 </footer>
+
+<div class="modal " id="message-modal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-danger" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="message-modal-title">信息</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body font-weight-bold" id="message-modal-content">
+                显示信息！
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 </body>
 
 <script>
+    function showMessageModal(title, content, typeClass) {
+        $('#message-modal-title').text(title);
+        $('#message-modal-content').text(content);
+        $('#message-modal .modal-dialog').removeClass('modal-primary');
+        $('#message-modal .modal-dialog').removeClass('modal-success');
+        $('#message-modal .modal-dialog').removeClass('modal-warning');
+        $('#message-modal .modal-dialog').removeClass('modal-danger');
+        $('#message-modal .modal-dialog').removeClass('modal-info');
+        if ("modal-primary" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-primary');
+        }
+        if ("modal-success" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-success');
+        }
+        if ("modal-warning" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-warning');
+        }
+        if ("modal-danger" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-danger');
+        }
+        if ("modal-info" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-info');
+        }
+        $('#message-modal').modal('show');
+    }
 
 
     function submitData(){
@@ -231,7 +279,7 @@
         let needNumber=$("#need_number").val();
         let deadline=$("#deadline").val();
         $.ajax({
-            url:'/test/release',
+            url:'/order/release',
             type:"POST",
             contentType: 'application/json; charset=UTF-8',
             data:JSON.stringify({
@@ -246,9 +294,21 @@
                 deadline:deadline
             }),
             success:function (res) {
-                alert(res);
+                if(res){
+                    showMessageModal("成功","发布成功","modal-success");
+                } else{
+                    showMessageModal("失败","发布失败","modal-danger");
+                }
             }
         })
+    }
+
+    function main() {
+        window.open("/order/goMain",'_self');
+    }
+
+    function sign() {
+        window.open("/order/goFirst",'_self');
     }
 </script>
 </html>

@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
 登录成功
 <hr/>
-<form action="/test/update" method="get">
+<form action="/user/update" method="get">
     <table border="1">
         <tr>
             <th>用户ID</th>
@@ -27,11 +28,12 @@
             <td th:text="${user.sex}"></td>
             <td th:text="${user.email}"></td>
             <td th:text="${user.phone}"></td>
-            <td th:text="${user.createTime}"></td>
+            <td th:text="${user.headIcon}"></td>
         </tr>
     </table>
+    <img th:src="${user.headIcon.substring(36)}">
     <input type="submit" value="修改"><a href="/test/loginOut">注销</a>
 </form>
-
 </body>
+
 </html>

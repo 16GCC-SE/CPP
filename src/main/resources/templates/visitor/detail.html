@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>校园兼职网</title>
+
+    <link th:href="@{/vendors/@coreui/icons/css/coreui-icons.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/flag-icon-css/css/flag-icon.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/simple-line-icons/css/simple-line-icons.css}" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/detail.css}" rel="stylesheet"/>
+    <link th:href="@{/vendors/pace-progress/css/pace.min.css}" rel="stylesheet">
+</head>
+<style>
+
+
+    /*导航栏样式*/
+    @font-face {
+        font-family: hanzhen;
+        src: url("../../static/hanzhen.ttf");
+    }
+
+    .head {
+        width: 100%;
+        background-color: #B5B4B2;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .header_body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .around {
+        padding: 0px 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .until {
+        background-color: #C3C3C3;
+        padding: 10px 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: flex-end;
+    }
+
+    .until:hover {
+        background-color: #CFCFCF;
+    }
+
+    .until > img {
+        width: 40px;
+        height: 40px
+    }
+
+    .select_until {
+        background-color: #F2E61E;
+        padding: 0px 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .select_until > img {
+        width: 47px;
+        height: 47px;
+    }
+
+    /*导航栏样式*/
+
+
+</style>
+<body BGCOLOR="white">
+<!--<div class="Top">-->
+    <!--<img src="../../image/PartTimePlatform.jpg">-->
+    <!--<a href=""><img src="../../image/Navigation.jpg"></a>-->
+    <!--<a href=""><img src="../../image/Navigation1.jpg"></a>-->
+    <!--<a href=""><img src="../../image/Navigation2.jpg"></a>-->
+    <!--<a href=""><img class="SignIn" src="../../image/SignIn.jpg"></a>-->
+<!--</div>-->
+<header class="head">
+    <div class="around">
+        <img src="../../image/icon/home.svg" width="50px" height="50px">
+        <div style="font-family: hanzhen;font-size: 1.5em;color: white">兼职平台</div>
+    </div>
+    <div class="header_body">
+        <div class="until">
+            <img src="../../image/icon/flag.svg">
+        </div>
+        <div class="select_until">
+            <img src="../../image/icon/sign_select.svg">
+            <div style="color: white;font-family: hanzhen">找兼职</div>
+        </div>
+        <div class="until">
+            <img src="../../image/icon/letter.svg" onclick="release()">
+        </div>
+    </div>
+    <div class="around">
+        <img src="../../image/icon/my.svg" width="40px" height="40px" onclick="sign()">
+    </div>
+</header>
+<div class="content" id="item-manager">
+    <div style="margin-top:1% ">
+    <span class="college">
+        <A HREF=""> 广州商学院校园兼职平台</A>
+        <A> &nbsp;>&nbsp;兼职详情</A>
+    </span>
+    </div>
+    <div class="row cui-justify-center">
+        <div class="col-md-7">
+            <div CLASS="jianzhi">
+        <span style="width: 100%">
+        <h3 style="margin-top: 3%;">&nbsp;&nbsp;&nbsp;{{item.title}}</h3><br>
+            <a style="margin-left: 5%"><i class="fa fa-yen fa-lg " style="color: red">{{item.classification}}</i></a>
+            <a style="font-size: 80%">{{item.classification}}</a>
+            <a style="margin-left: 23%">{{item.settlementMethod}}&nbsp;&nbsp;|&nbsp;&nbsp;{{item.needNumber}}人&nbsp;&nbsp;|&nbsp;&nbsp;{{item.createTime}}</a>
+            <br>
+               <button class="btn btn-square btn-warning" type="button" style="margin-left: 5%;margin-top: 5%">
+                   <i class="fa fa-lightbulb-o"></i>&nbsp;领取任务
+               </button>
+
+        </span>
+            </div>
+            <div class="xiangqing">
+        <span style="width: 100%">
+        <h4 style="margin-left: 5%">兼职详情</h4>
+            <HR style="width: 70%;margin-left: 5%">
+
+            <button class="btn btn-pill btn-success btn-sm" type="button">{{item.sex}}</button>
+            <button class="btn btn-pill btn-success btn-sm" type="button">{{item.salary}}元</button>
+            <button class="btn btn-pill btn-success btn-sm" type="button">{{item.needNumber}}人</button>
+            <button class="btn btn-pill btn-success btn-sm" type="button">{{item.settlementMethod}}</button>
+            <br>
+            <p style="font-size: large;margin-left: 5%">工作地点：{{item.place}}</p>
+            <p style="font-size: large;margin-left: 5%">工作内容：</p>
+            <p style="margin-left: 7%;line-height: 25px">工作职责：<br>{{item.content}}</p>
+        </span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div CLASS="boss">
+                <div style="text-align: center">
+                    <img th:src="${user.headIcon.substring(36)}" style="width: 100px;height: 100px;">
+                </div>
+                <div style="padding: 10px;text-align: center">
+                    <h4>广商勤管中心</h4>
+                    <br><br>
+                    <a>联系方式：17827414568</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="app-footer">
+    <div>
+        <span>&copy;2015-2018兼职</span>
+    </div>
+    <div style="margin: 0 auto">
+        <a href="">关于我们&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <a href="">联系我们</a>
+    </div>
+    <div class="ml-auto ">
+        <span>京ICP备15058772号</span>
+        <a href=""></a>
+    </div>
+</footer>
+<script th:src="@{/vendors/jquery/js/jquery.min.js}"></script>
+<script th:src="@{/vendors/popper.js/js/popper.min.js}"></script>
+<script th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendors/pace-progress/js/pace.min.js}"></script>
+<script th:src="@{/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/vendors/@coreui/coreui/js/coreui.min.js}"></script>
+<script th:src="@{/vendors/vue/vue.js}"></script>
+<script>
+    var orderDetail = JSON.parse(sessionStorage.getItem("orderDetail"));
+    var orderDetailVue = null;
+    orderDetailVue = new Vue({
+        el: '#item-manager',
+        data: {
+            item: orderDetail
+        }
+    });
+    $(function () {
+
+    });
+
+    function release() {
+        window.open("/order/goRelease",'_self');
+    }
+
+    function sign() {
+        window.open("/order/goFirst",'_self');
+    }
+
+    // $.ajax({
+    //     cache: false,
+    //     async: false,
+    //     dataType: 'json',
+    //     type: 'POST',
+    //     url: "/detail_user",
+    //     success: function (data){
+    //     }
+    // });
+</script>
+</body>
+</html>

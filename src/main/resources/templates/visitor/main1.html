@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>校园兼职网</title>
+
+    <link th:href="@{/vendors/@coreui/icons/css/coreui-icons.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/flag-icon-css/css/flag-icon.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/simple-line-icons/css/simple-line-icons.css}" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link th:href="@{/vendors/pace-progress/css/pace.min.css}" rel="stylesheet">
+</head>
+<style>
+
+
+    /*导航栏样式*/
+    @font-face {
+        font-family: hanzhen;
+        src: url("../../static/hanzhen.ttf");
+    }
+
+    .head {
+        width: 100%;
+        background-color: #B5B4B2;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .header_body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .around {
+        padding: 0px 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .until {
+        background-color: #C3C3C3;
+        padding: 10px 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: flex-end;
+    }
+
+    .until:hover {
+        background-color: #CFCFCF;
+    }
+
+    .until > img {
+        width: 40px;
+        height: 40px
+    }
+
+    .select_until {
+        background-color: #F2E61E;
+        padding: 0px 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .select_until > img {
+        width: 47px;
+        height: 47px;
+    }
+
+    /*导航栏样式*/
+
+
+</style>
+<body BGCOLOR="white">
+<!--<div class="Top">-->
+    <!--<img src="../../image/PartTimePlatform.jpg">-->
+    <!--<a href=""><img src="../../image/Navigation.jpg"></a>-->
+    <!--<a href=""><img src="../../image/Navigation1.jpg"></a>-->
+    <!--<a href=""><img src="../../image/Navigation2.jpg"></a>-->
+    <!--<a href=""><img class="SignIn" src="../../image/SignIn.jpg"></a>-->
+<!--</div>-->
+<header class="head">
+    <div class="around">
+        <img src="../../image/icon/home.svg" width="50px" height="50px">
+        <div style="font-family: hanzhen;font-size: 1.5em;color: white">兼职平台</div>
+    </div>
+    <div class="header_body">
+        <div class="until">
+            <img src="../../image/icon/flag.svg">
+        </div>
+        <div class="select_until">
+            <img src="../../image/icon/sign_select.svg">
+            <div style="color: white;font-family: hanzhen">找兼职</div>
+        </div>
+        <div class="until">
+            <img src="../../image/icon/letter.svg" onclick="release()">
+        </div>
+    </div>
+    <div class="around">
+        <img src="../../image/icon/my.svg" width="40px" height="40px" onclick="sign()">
+    </div>
+</header>
+<div class="content" id="items-manager">
+    <div class="college">
+        广州商学院校园兼职平台
+    </div>
+    <div class="TopPublicity">
+        <a href=""> <img src="../../image/main.jpg"></a>
+    </div>
+    <div class="publicity">
+        找校园兼职，上兼职平台，找你所找
+    </div>
+    <div class="type">
+        类型：
+        <a href="javascript:selectResult('/classification', '代课员')">代课员 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '代拿员')">代拿员 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '送餐员')">送餐员 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '宣传员')">宣传员 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '校园活动')">校园活动 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '校外')">校外 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '长工')">长工 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '短工')">短工 &nbsp;</a>
+        <a href="javascript:selectResult('/classification', '其他')">其他 &nbsp;</a>
+    </div>
+    <!--类型选项-->
+    <div class="Requirement">
+        <div class="btn-group ml-2">
+            <button class="btn btn-sm btn-secondary" type="button">
+                <font>结算方式</font>
+            </button>
+            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div class="dropdown-menu" x-placement="bottom-start"
+                 style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
+                <a class="dropdown-item" href="javascript:selectResult('/settlement', '次结')"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">次结</font></font></a>
+                <a class="dropdown-item" href="javascript:selectResult('/settlement', '日结')"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">日结</font></font></a>
+                <a class="dropdown-item" href="javascript:selectResult('/settlement', '月结')"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">月结</font></font></a>
+            </div>
+        </div>
+        <!--第一个下拉-->
+        <div class="btn-group ml-2">
+            <button class="btn btn-sm btn-secondary" type="button">
+                <font>性别需求</font>
+            </button>
+            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div class="dropdown-menu" x-placement="bottom-start"
+                 style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
+                <a class="dropdown-item" href="javascript:selectResult('/sex', '男')"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">男</font></font></a>
+                <a class="dropdown-item" href="javascript:selectResult('/sex', '女')"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">女</font></font></a>
+            </div>
+        </div>
+        <!--第二个下拉-->
+        <div class="btn-group ml-2">
+            <button class="btn btn-sm btn-secondary" type="button">
+                <font>工资最高</font>
+            </button>
+            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div class="dropdown-menu" x-placement="bottom-start"
+                 style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
+                <a class="dropdown-item" href="javascript:selectResult('/salary', 'min')"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">工资最低</font></font></a>
+            </div>
+        </div>
+        <!--第三个下拉-->
+        <div class="btn-group ml-2">
+            <button class="btn btn-sm btn-secondary" type="button">
+                <font>校方发布</font>
+            </button>
+            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div class="dropdown-menu" x-placement="bottom-start"
+                 style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
+                <a class="dropdown-item" href="javascript:selectResult('/jobtype', 'person')"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">个人发布</font></font></a>
+                <a class="dropdown-item" href="javascript:selectResult('/jobtype', 'merchant')"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">商家发布</font></font></a>
+            </div>
+        </div>
+        <!--第四个下拉-->
+        <div class="btn-group ml-2">
+            <button class="btn btn-sm btn-secondary" type="button">
+                <font>最新发布</font>
+            </button>
+            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div class="dropdown-menu" x-placement="bottom-start"
+                 style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
+                <a class="dropdown-item" href="javascript:selectResult('/release', 'latest')"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">最晚发布</font></font></a>
+            </div>
+        </div>
+        <!--第五个下拉-->
+    </div>
+    <div class="task">
+        <div class="form">
+            <table class="table table-responsive-sm table-bordered" id="ordersTable">
+                <tbody>
+                <tr v-for="(item,index) in pageItems">
+                    <td>
+                        <button class="btn btn-pill btn-success btn-sm" type="button">{{item.classification}}</button>&nbsp;<a
+                            v-bind:href="'javascript:jumpOrderDetail('+index+')'">{{item.title}}</a></td>
+                    <td><i class="icon-user">{{item.needNumber}}</i></td>
+                    <td><i class="cui-yen">{{item.salary}}</i></td>
+                    <td>
+                        <i class="fa fa-clock-o">{{item.createTime}}</i>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="RightPublicity"></div>
+    </div>
+    <div class="list">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" v-on:click="previous()" aria-label="Previous">
+                    <span aria-hidden="true">上一页</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <!--分页-->
+            <li class="page-item" v-for="n in pageCount"
+                v-bind:class="n==paging.offset+1 ? 'active' : ''">
+                <a class="page-link" v-on:click="paging.offset = n-1">{{n}}</a>
+            </li>
+            <li class="page-item" v-if="isPageMore">
+                <a class="page-link" v-on:click="more()">...</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" v-on:click="next()" aria-label="Next">
+                    <span aria-hidden="true">下一页</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<footer class="app-footer">
+    <div>
+        <span>&copy;2015-2018兼职</span>
+    </div>
+    <div style="margin: 0 auto">
+        <a href="">关于我们&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <a href="">联系我们</a>
+    </div>
+    <div class="ml-auto">
+        <span>京ICP备15058772号</span>
+        <a href=""></a>
+    </div>
+</footer>
+</div>
+
+<script th:src="@{/vendors/jquery/js/jquery.min.js}"></script>
+<script th:src="@{/vendors/popper.js/js/popper.min.js}"></script>
+<script th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendors/pace-progress/js/pace.min.js}"></script>
+<script th:src="@{/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/vendors/@coreui/coreui/js/coreui.min.js}"></script>
+<script th:src="@{/vendors/vue/vue.js}"></script>
+<script>
+    var orders = [];
+    var ordersVue = null;
+    var pagingData = {
+        total: 0,
+        size: 10,
+        offset: 0
+    };
+    var serviceUrl = {
+        list: "/orders"
+    };
+    var selectResult = function (requestUrl, param) {
+        $.ajax({
+            url : requestUrl,
+            type: 'POST',
+            data :param,
+            contentType:"application/json;charset=UTF-8",
+            dataType: "json",
+            success : function (response) {
+                orders.splice(0, orders.length);
+                for (var i = 0; i < response.length; i++) {
+                    orders.push(response[i]);
+                }
+            }
+        });
+    };
+
+    // function UserDetail(index){
+    //     rowIndex = index;
+    //     var order = orders[rowIndex];
+    //     $.ajax({
+    //         url:"/detail_action",
+    //         type:"POST",
+    //         data: order.id,
+    //         contentType:"application/json;charset=UTF-8",
+    //         dataType: "json",
+    //         success:function (res) {
+    //
+    //         }
+    //     });
+    // }
+
+    function jumpOrderDetail(index) {
+        rowIndex = index;
+        var order = orders[rowIndex];
+        $.ajax({
+            url : "/orderdetail",
+            type: 'POST',
+            data: order.id,
+            contentType:"application/json;charset=UTF-8",
+            dataType: "json",
+            success : function (response) {
+                sessionStorage.setItem("orderDetail", JSON.stringify(response));
+                window.open('/detail_action','_self');
+            }
+        });
+    }
+
+    $(function () {
+
+        $.ajax({
+            url : "/length",
+            success : function (response) {
+                pagingData.total = response;
+            }
+        });
+        var listUrlForCurrentPage = serviceUrl.list + "?offset=" + pagingData.offset + "&size=" + pagingData.size;
+        $.getJSON(listUrlForCurrentPage, function (json) {
+            orders = json;
+            ordersVue = new Vue({
+                el: '#items-manager',
+                data: {
+                    items: orders,
+                    paging: pagingData
+                },
+                computed: {
+                    pageItems: function () {
+                        return this.items.filter(function (value, index) {
+                            return ((index >= pagingData.offset * pagingData.size) && (index < (pagingData.offset + 1) * pagingData.size));
+                        });
+                    },
+                    pageCount: function () {
+                        var pageCount = Math.ceil(this.paging.total / this.paging.size);
+                        return pageCount;
+                    },
+                    isPageMore: function (pageNumber) {
+                        var pageCount = Math.ceil(this.paging.total / this.paging.size);
+                        return pageCount > 10;
+                    }
+                },
+                methods: {
+                    previous: function () {
+                        if (this.paging.offset > 0) {
+                            this.paging.offset -= 1;
+                        }
+                    },
+                    next: function () {
+                        if (this.paging.offset < (this.pageCount - 1)) {
+                            this.paging.offset += 1;
+                        }
+                    },
+                    more: function () {
+
+                    }
+                }
+            });
+            ordersVue.$watch('paging.size', function (newVal, oldVal) {
+
+            });
+            ordersVue.$watch('paging.offset', function (newVal, oldVal) {
+
+            });
+        });
+    });
+
+    function release() {
+        window.open("/order/goRelease",'_self');
+    }
+
+    function sign() {
+        window.open("/order/goFirst",'_self');
+    }
+
+</script>
+</body>
+</html>
