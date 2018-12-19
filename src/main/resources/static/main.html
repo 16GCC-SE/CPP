@@ -54,18 +54,18 @@
             <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                 <font id="jiesuan">结算方式</font>
-            <div class="dropdown-menu" x-placement="bottom-start"
-                 style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="javascript:selectResult('/settlement', '次结',this)"><font
-                        style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">次结</font></font></a>
-                <a class="dropdown-item" href="javascript:selectResult('/settlement', '日结',this)"><font
-                        style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">日结</font></font></a>
-                <a class="dropdown-item" href="javascript:selectResult('/settlement', '月结',this)"><font
-                        style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">月结</font></font></a>
-            </div>
+                <div class="dropdown-menu" x-placement="bottom-start"
+                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
+                    <a class="dropdown-item"  onclick="selectResult('/settlement', '次结',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">次结</font></font></a>
+                    <a class="dropdown-item"  onclick="selectResult('/settlement', '日结',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">日结</font></font></a>
+                    <a class="dropdown-item"  onclick="selectResult('/settlement', '月结',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">月结</font></font></a>
+                </div>
             </button>
         </div>
         <!--第一个下拉-->
@@ -73,15 +73,15 @@
             <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <font id="xingbie">性别需求</font>
-            <div class="dropdown-menu" x-placement="bottom-start"
-                 style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" href="javascript:selectResult('/sex', '男',this)"><font
-                        style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">男</font></font></a>
-                <a class="dropdown-item" href="javascript:selectResult('/sex', '女',this)"><font
-                        style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">女</font></font></a>
-            </div>
+                <div class="dropdown-menu" x-placement="bottom-start"
+                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
+                    <a class="dropdown-item"  onclick="selectResult('/sex', '男',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">男</font></font></a>
+                    <a class="dropdown-item"  onclick="selectResult('/sex', '女',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">女</font></font></a>
+                </div>
             </button>
         </div>
         <!--第二个下拉-->
@@ -94,19 +94,19 @@
         <div class="btn-group ml-2">
             <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <font id="fabu">发布方</font>
-            <div class="dropdown-menu" x-placement="bottom-start"
-                 style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
-                <a class="dropdown-item" onclick="selectResult('/jobtype', 'person',this)" href="javascript:selectResult('/jobtype', 'person',this)"><font
-                        style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">个人发布</font></font></a>
-                <a class="dropdown-item" href="javascript:selectResult('/jobtype', 'school',this)"><font
-                        style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">校方发布</font></font></a>
-                <a class="dropdown-item" href="javascript:selectResult('/jobtype', 'merchant',this)"><font
-                        style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">商家发布</font></font></a>
-            </div>
+                <font >发布方</font>
+                <div class="dropdown-menu" x-placement="bottom-start"
+                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(78px, 32px, 0px);">
+                    <a class="dropdown-item" onclick="selectResult('/jobtype', 'person',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">个人发布</font></font></a>
+                    <a class="dropdown-item" onclick="selectResult('/jobtype', 'school',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">校方发布</font></font></a>
+                    <a class="dropdown-item"  onclick="selectResult('/jobtype', 'merchant',this)"><font
+                            style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">商家发布</font></font></a>
+                </div>
             </button>
         </div>
         <!--第四个下拉-->
@@ -196,8 +196,8 @@
         list: "/orders"
     };
     function selectResult(requestUrl, param,object) {
-       var txt=object.innerText;
-       $(object).parent('div').siblings().find('font').text(txt);
+        var txt=object.innerText;
+         $(object).parent('div').parent('button').find('font').text(txt);
         $.ajax({
             url: requestUrl,
             type: 'POST',
