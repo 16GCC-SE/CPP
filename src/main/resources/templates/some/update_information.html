@@ -115,7 +115,7 @@
             <!--头像-->
             <div style="margin-right:50px;">
                 <img th:src="${user.headIcon.substring(36)}" width="150px" height="150px" style="border-radius:50%" >
-                <div class="text-center" style="font-size:22px; font-weight:600; padding:10px 0px;">兼职狂人</div>
+                <div disabled class="text-center" style="font-size:22px; font-weight:600; padding:10px 0px;" th:text="${user.name}"></div>
             </div>
             <!--个人资料-->
             <div class="col-md-2" style="padding-right:0px">
