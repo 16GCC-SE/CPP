@@ -82,22 +82,22 @@
 
 
 </style>
-<body BGCOLOR="white">
+<body style="background-color: white;display: flex;flex-direction: column;justify-content: center">
 <!--<div class="Top">-->
-    <!--<img src="../../image/PartTimePlatform.jpg">-->
-    <!--<a href=""><img src="../../image/Navigation.jpg"></a>-->
-    <!--<a href=""><img src="../../image/Navigation1.jpg"></a>-->
-    <!--<a href=""><img src="../../image/Navigation2.jpg"></a>-->
-    <!--<a href=""><img class="SignIn" src="../../image/SignIn.jpg"></a>-->
+<!--<img src="../../image/PartTimePlatform.jpg">-->
+<!--<a href=""><img src="../../image/Navigation.jpg"></a>-->
+<!--<a href=""><img src="../../image/Navigation1.jpg"></a>-->
+<!--<a href=""><img src="../../image/Navigation2.jpg"></a>-->
+<!--<a href=""><img class="SignIn" src="../../image/SignIn.jpg"></a>-->
 <!--</div>-->
 <header class="head">
     <div class="around">
         <img src="../../image/icon/home.svg" width="50px" height="50px">
         <div style="font-family: hanzhen;font-size: 1.5em;color: white">兼职平台</div>
     </div>
-    <div class="header_body">
+    <div class="header_body" style="margin-left: -100px">
         <div class="until">
-            <img src="../../image/icon/flag.svg">
+            <img src="../../image/icon/flag.svg" onclick="history()">
         </div>
         <div class="select_until">
             <img src="../../image/icon/sign_select.svg">
@@ -111,23 +111,27 @@
         <img src="../../image/icon/my.svg" width="40px" height="40px" onclick="sign()">
     </div>
 </header>
-<div class="content" id="item-manager">
+
+<nav class="text-center p-5"><img src="../../image/title.jpg"></nav>
+
+
+<div class="content align-self-center" style="width: 1000px" id="item-manager">
     <div style="margin-top:1% ">
     <span class="college">
-        <A HREF=""> 广州商学院校园兼职平台</A>
+        <A href="/order/goMain"> 广州商学院校园兼职平台</A>
         <A> &nbsp;>&nbsp;兼职详情</A>
     </span>
     </div>
-    <div class="row cui-justify-center">
-        <div class="col-md-7">
+    <div class="row">
+        <div class="col-md-8">
             <div CLASS="jianzhi">
         <span style="width: 100%">
         <h3 style="margin-top: 3%;">&nbsp;&nbsp;&nbsp;{{item.title}}</h3><br>
-            <a style="margin-left: 5%"><i class="fa fa-yen fa-lg " style="color: red">{{item.classification}}</i></a>
-            <a style="font-size: 80%">{{item.classification}}</a>
+            <a style="margin-left: 5%"><i class="fa fa-yen fa-lg " style="color: red">{{item.salary}}</i></a>
+            <a style="font-size: 80%">{{item.settlementMethod}}</a>
             <a style="margin-left: 23%">{{item.settlementMethod}}&nbsp;&nbsp;|&nbsp;&nbsp;{{item.needNumber}}人&nbsp;&nbsp;|&nbsp;&nbsp;{{item.createTime}}</a>
             <br>
-               <button class="btn btn-square btn-warning" type="button" style="margin-left: 5%;margin-top: 5%">
+               <button id="get_job" class="btn btn-square btn-warning" type="button" style="margin-left: 5%;margin-top: 5%" onclick="saveOrder()">
                    <i class="fa fa-lightbulb-o"></i>&nbsp;领取任务
                </button>
 
@@ -149,15 +153,15 @@
         </span>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div CLASS="boss">
                 <div style="text-align: center">
-                    <img th:src="${user.headIcon.substring(36)}" style="width: 100px;height: 100px;">
+                    <img th:src="${user.headIcon.substring(36)}" style="width: 150px;height: 150px;">
                 </div>
                 <div style="padding: 10px;text-align: center">
-                    <h4>广商勤管中心</h4>
+                    <h4 th:text="${user.name}"></h4>
                     <br><br>
-                    <a>联系方式：17827414568</a>
+                    <h5>联系方式：</h5><h5 th:text="${user.phone}"></h5>
                 </div>
             </div>
         </div>
@@ -176,6 +180,30 @@
         <a href=""></a>
     </div>
 </footer>
+
+<div class="modal " id="message-modal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-danger" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="message-modal-title">信息</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body font-weight-bold" id="message-modal-content">
+                显示信息！
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+</body>
 <script th:src="@{/vendors/jquery/js/jquery.min.js}"></script>
 <script th:src="@{/vendors/popper.js/js/popper.min.js}"></script>
 <script th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
@@ -184,8 +212,72 @@
 <script th:src="@{/vendors/@coreui/coreui/js/coreui.min.js}"></script>
 <script th:src="@{/vendors/vue/vue.js}"></script>
 <script>
+    function showMessageModal(title, content, typeClass) {
+        $('#message-modal-title').text(title);
+        $('#message-modal-content').text(content);
+        $('#message-modal .modal-dialog').removeClass('modal-primary');
+        $('#message-modal .modal-dialog').removeClass('modal-success');
+        $('#message-modal .modal-dialog').removeClass('modal-warning');
+        $('#message-modal .modal-dialog').removeClass('modal-danger');
+        $('#message-modal .modal-dialog').removeClass('modal-info');
+        if ("modal-primary" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-primary');
+        }
+        if ("modal-success" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-success');
+        }
+        if ("modal-warning" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-warning');
+        }
+        if ("modal-danger" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-danger');
+        }
+        if ("modal-info" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-info');
+        }
+        $('#message-modal').modal('show');
+    }
+
+
     var orderDetail = JSON.parse(sessionStorage.getItem("orderDetail"));
     var orderDetailVue = null;
+
+    var isReceiveFromResponse;
+    $(function () {
+        //判断是否领取兼职 把领取兼职按钮设为已领取，设置数据
+        $.ajax({
+            url: "/order/isreceive",
+            type: 'POST',
+            data: orderDetail.id,
+            contentType: "application/json;charset=UTF-8",
+            success: function (response) {
+                isReceiveFromResponse = response;
+                if (isReceiveFromResponse) {
+                    $("#get_job").text("已领取");
+                    $("#get_job").attr("disabled","disabled");
+                }else {
+                    $("#get_job").text("领取任务")
+                }
+
+                orderDetailVue = new Vue({
+                    el: '#item-manager',
+                    data: {
+                        item: orderDetail,
+                        isReceive: isReceiveFromResponse
+                    }
+                });
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+
     orderDetailVue = new Vue({
         el: '#item-manager',
         data: {
@@ -196,6 +288,10 @@
 
     });
 
+    function main() {
+        window.open("/order/goMain", '_self');
+    }
+
     function release() {
         window.open("/order/goRelease",'_self');
     }
@@ -204,15 +300,29 @@
         window.open("/order/goFirst",'_self');
     }
 
-    // $.ajax({
-    //     cache: false,
-    //     async: false,
-    //     dataType: 'json',
-    //     type: 'POST',
-    //     url: "/detail_user",
-    //     success: function (data){
-    //     }
-    // });
+    function history() {
+        window.open("/order/history",'_self');
+    }
+
+    function saveOrder() {
+        var button=event.target;
+        $.ajax({
+            url:'/save_order',
+            success:function (res) {
+                if(res==1){
+                    showMessageModal("成功","领取成功","modal-success");
+                    $(button).text("领取成功");
+                    $(button).attr("disabled","disabled");
+                } else if (res==0) {
+                    showMessageModal("失败","领取失败","modal-danger");
+                }else if (res==2) {
+                    showMessageModal("失败","人数已满","modal-warning");
+                    $(button).text("人数已满");
+                    $(button).attr("disabled","disabled");
+                }
+            }
+        });
+    }
 </script>
 </body>
 </html>

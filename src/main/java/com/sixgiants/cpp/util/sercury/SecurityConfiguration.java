@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // 完全可以访问
                 .antMatchers("/css/**","/js/**","/vendors/**","/image/**","/hanzhen.ttf","/upload/**","/static/**").permitAll()
-                .antMatchers("/visitor/login/form","/user/**","/user/register","/user/register_form","/user/login_action","/orders","/length","/settlement","/sex","/salary","/jobtype","/release","/classification","/orderdetail","/detail_action").permitAll()
+                .antMatchers("/visitor/login/form","/user/**","/user/register","/user/register_form","/user/login_action","/orders","/length","/settlement","/sex","/salary","/jobtype","/release","/classification","/orderdetail","/detail_action","/save_order").permitAll()
                 //要求用户进行身份验证，并且必须与USER角色相关联
                 .and()
                 .authorizeRequests()

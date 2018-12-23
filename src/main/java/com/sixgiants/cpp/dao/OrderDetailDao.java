@@ -14,7 +14,4 @@ public class OrderDetailDao {
         return orderDeatilMapper.findOrderById(id);
     }
 
-    public User findEmployerId(String id){
-        return orderDeatilMapper.findEmployerId(id);
-    }
 }

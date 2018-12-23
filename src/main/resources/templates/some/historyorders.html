@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>校园兼职网</title>
+
+    <link th:href="@{/vendors/@coreui/icons/css/coreui-icons.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/flag-icon-css/css/flag-icon.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/simple-line-icons/css/simple-line-icons.css}" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/accessed.css}" rel="stylesheet"/>
+    <link th:href="@{/vendors/pace-progress/css/pace.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/pace-progress/css/pace.min.css}" rel="stylesheet">
+</head>
+<style>
+
+
+    /*导航栏样式*/
+    /*@font-face {*/
+    /*font-family: hanzhen;*/
+    /*src: url("static/hanzhen.ttf");*/
+    /*}*/
+
+    .head {
+        width: 100%;
+        background-color: #B5B4B2;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .header_body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .around {
+        padding: 0px 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .until {
+        background-color: #C3C3C3;
+        padding: 10px 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: flex-end;
+    }
+
+    .until:hover {
+        background-color: #CFCFCF;
+    }
+
+    .until > img {
+        width: 40px;
+        height: 40px
+    }
+
+    .select_until {
+        background-color: #F2E61E;
+        padding: 0px 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .select_until > img {
+        width: 47px;
+        height: 47px;
+    }
+
+    /*导航栏样式*/
+
+
+</style>
+<body style="background-color: white;display: flex;flex-direction: column;justify-content: center">
+<header class="head">
+    <div class="around">
+        <img src="../../image/icon/home.svg" width="50px" height="50px">
+        <div style="font-family: hanzhen;font-size: 1.5em;color: white">兼职平台</div>
+    </div>
+    <div class="header_body" style="margin-left: -100px">
+        <div class="select_until">
+            <img src="../../image/icon/flag_select.svg">
+            <div style="color: white;font-family: hanzhen">已接兼职</div>
+        </div>
+        <div class="until">
+            <img src="../../image/icon/sign.svg" onclick="main()">
+        </div>
+        <div class="until" onclick="release()">
+            <img src="../../image/icon/letter.svg">
+
+        </div>
+    </div>
+    <div class="around">
+        <img src="../../image/icon/my.svg" width="40px" height="40px" onclick="sign()">
+    </div>
+</header>
+
+<nav class="text-center p-5"><img src="../../image/title.jpg"></nav>
+<div class="content align-self-center" style="width: 1000px" id="items-manager">
+
+    <div class="row cui-justify-center">
+        <div class="form">
+            <table class="table table-responsive-sm " id="ordersTable">
+                <thead>
+                <tr>
+                    <th scope="col">兼职</th>
+                    <th scope="col">发布者</th>
+                    <th scope="col">报名时间</th>
+                    <th scope="col">薪酬</th>
+                    <th scope="col">当前状态</th>
+                    <th scope="col">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(item,index) in pageItems">
+                    <td><a href="" class="alert-link">{{item.title}}</a></td>
+                    <!--<td><a href="#" class="alert-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">示例链接</font></font></a></td>-->
+                    <td><a>{{item.name}}</a></td>
+                    <td><a>{{item.createTime}}</a></td>
+                    <td><a>{{item.salary}}</a></td>
+                    <td>
+                        <span class="badge badge-success" v-if="item.status=='已完成'">{{item.status}}</span>
+                        <span class="badge badge-info" v-if="item.status=='进行中'">{{item.status}}</span>
+                        <span class="badge badge-danger" v-if="item.status=='禁止报名'">{{item.status}}</span>
+                    </td>
+                    <td>
+                        <button class="btn btn-brand btn-sm btn-html5"  type="button" v-if="item.status=='已完成'" onclick="showMessageModal('删除','确定删除该记录？','modal-danger')">
+                            <span>删除</span>
+                        </button>
+                        <button class="btn btn-brand btn-sm btn-youtube"  type="button" v-if="item.status=='进行中'" onclick="showMessageModal('取消','确定取消该任务？','modal-danger')" >
+                            <span>取消</span>
+                        </button>
+                        <button class="btn btn-brand btn-sm btn-youtube"  type="button" v-if="item.status=='禁止报名'" onclick="showMessageModal('取消','确定取消？它将会退还任务并且降低您的信誉值','modal-danger')">
+                            <span>取消</span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="list">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" v-on:click="previous()" aria-label="Previous">
+                    <span aria-hidden="true">上一页</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <!--分页-->
+            <li class="page-item" v-for="n in pageCount"
+                v-bind:class="n==paging.offset+1 ? 'active' : ''">
+                <a class="page-link" v-on:click="paging.offset = n-1">{{n}}</a>
+            </li>
+            <li class="page-item" v-if="isPageMore">
+                <a class="page-link" v-on:click="more()">...</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" v-on:click="next()" aria-label="Next">
+                    <span aria-hidden="true">下一页</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<footer class="app-footer">
+    <div>
+        <span>&copy;2015-2018兼职</span>
+    </div>
+    <div style="margin: 0 auto">
+        <a href="">关于我们&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <a href="">联系我们</a>
+    </div>
+    <div class="ml-auto">
+        <span>京ICP备15058772号</span>
+        <a href=""></a>
+    </div>
+</footer>
+
+<div class="modal " id="message-modal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-danger" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="message-modal-title">信息</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body font-weight-bold" id="message-modal-content">
+                显示信息！
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script th:src="@{/vendors/jquery/js/jquery.min.js}"></script>
+<script th:src="@{/vendors/popper.js/js/popper.min.js}"></script>
+<script th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendors/pace-progress/js/pace.min.js}"></script>
+<script th:src="@{/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/vendors/@coreui/coreui/js/coreui.min.js}"></script>
+<script th:src="@{/vendors/vue/vue.js}"></script>
+<script>
+    var employees = [];
+    var employeesVue = null;
+    var pagingData = {
+        total: 0,
+        size: 10,//多少数据一页
+        offset: 0
+        // morePage: 2 //达到多少页后显示...
+    };
+    var serviceUrl = {
+        list: "/historyorders"
+    };
+    $(function () {
+        $.ajax({
+            url : "/lengthofemployee",
+            success : function (response) {
+                pagingData.total = response;
+            }
+        });
+        var listUrlForCurrentPage = serviceUrl.list + "?offset=" + pagingData.offset + "&size=" + pagingData.size;
+        $.getJSON(listUrlForCurrentPage, function (json) {
+            employees = json;
+            employeesVue = new Vue({
+                el: '#items-manager',
+                data: {
+                    items: employees,
+                    paging: pagingData
+                },
+                computed: {
+                    pageItems: function () {
+                        return this.items.filter(function (value, index) {
+                            return ((index >= pagingData.offset * pagingData.size) && (index < (pagingData.offset + 1) * pagingData.size));
+                        });
+                    },
+                    pageCount: function () {
+                        var pageCount = Math.ceil(this.paging.total / this.paging.size);
+                        return pageCount;
+                    },
+                    isPageMore: function (pageNumber) {
+                        // var pageCount = Math.ceil(this.paging.total / this.paging.size);
+                        // return pageCount > pagingData.size;
+                    }
+                },
+                methods: {
+                    previous: function () {
+                        if (this.paging.offset > 0) {
+                            this.paging.offset -= 1;
+                        }
+                    },
+                    next: function () {
+                        if (this.paging.offset < (this.pageCount - 1)) {
+                            this.paging.offset += 1;
+                        }
+                    }
+                }
+            });
+            employeesVue.$watch('paging.size', function (newVal, oldVal) {
+            });
+            employeesVue.$watch('paging.offset', function (newVal, oldVal) {
+            });
+        });
+    });
+    function main() {
+        window.open("/order/goMain", '_self');
+    }
+    function release() {
+        window.open("/order/goRelease",'_self');
+    }
+    function sign() {
+        window.open("/order/goFirst",'_self');
+    }
+    function showMessageModal(title, content, typeClass) {
+        $('#message-modal-title').text(title);
+        $('#message-modal-content').text(content);
+        $('#message-modal .modal-dialog').removeClass('modal-primary');
+        $('#message-modal .modal-dialog').removeClass('modal-success');
+        $('#message-modal .modal-dialog').removeClass('modal-warning');
+        $('#message-modal .modal-dialog').removeClass('modal-danger');
+        $('#message-modal .modal-dialog').removeClass('modal-info');
+        if ("modal-primary" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-primary');
+        }
+        if ("modal-success" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-success');
+        }
+        if ("modal-warning" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-warning');
+        }
+        if ("modal-danger" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-danger');
+        }
+        if ("modal-info" === typeClass) {
+            $('#message-modal .modal-dialog').addClass('modal-info');
+        }
+        $('#message-modal').modal('show');
+    }
+
+</script>
+</body>
+</html>

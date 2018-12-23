@@ -18,6 +18,16 @@ public class Order {
     private String settlementMethod;
     private Date createTime;
 
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     public String getId() {
         return id;
     }

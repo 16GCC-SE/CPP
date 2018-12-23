@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>前端框架</title>
@@ -13,6 +14,7 @@
     <script th:src="@{/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js}"></script>
     <script th:src="@{/vendors/@coreui/coreui/js/coreui.min.js}"></script>
     <script th:src="@{https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js}"></script>
+    <script th:src="@{/vendors/vue/vue.js}"></script>
 
 
     <link th:href="@{/vendors/@coreui/icons/css/coreui-icons.min.css}" rel="stylesheet">
@@ -22,16 +24,17 @@
     <!-- Main styles for this application-->
     <link th:href="@{/css/style.css}" rel="stylesheet">
     <link th:href="@{/vendors/pace-progress/css/pace.min.css}" rel="stylesheet">
+    <link th:href="@{vendors/datatables.net-bs4/css/dataTables.bootstrap4.css}" rel="stylesheet">
 
 </head>
 <style>
 
 
     /*导航栏样式*/
-    @font-face {
-        font-family: hanzhen;
-        src: url("static/hanzhen.ttf");
-    }
+    /*@font-face {*/
+    /*font-family: hanzhen;*/
+    /*src: url("static/hanzhen.ttf");*/
+    /*}*/
 
     .head {
         width: 100%;
@@ -94,9 +97,9 @@
         <img src="../../image/icon/home.svg" width="50px" height="50px">
         <div style="font-family: hanzhen;font-size: 1.5em;color: white">兼职平台</div>
     </div>
-    <div class="header_body">
+    <div class="header_body" style="margin-left: -100px">
         <div class="until">
-            <img src="../../image/icon/flag.svg">
+            <img src="../../image/icon/flag.svg" onclick="history()">
         </div>
         <div class="until">
             <img src="../../image/icon/sign.svg" onclick="main()">
@@ -137,7 +140,8 @@
 
                 <div class="form-group row">
                     <!--类型选择框-->
-                    <label class="col-md-2 col-form-label p-0 align-self-center text-right" for="classification">类型：</label>
+                    <label class="col-md-2 col-form-label p-0 align-self-center text-right"
+                           for="classification">类型：</label>
                     <div class="col-md-3 p-0">
                         <select class="form-control p-0" id="classification" name="classification">
                             <option value="0">代课员</option>
@@ -190,7 +194,8 @@
                     </div>
                     <div class="col-md-1"></div>
                     <!--所需人数-->
-                    <label class="col-md-2 col-form-label p-0 align-self-center text-right" for="need_number">所需人数：</label>
+                    <label class="col-md-2 col-form-label p-0 align-self-center text-right"
+                           for="need_number">所需人数：</label>
                     <div class="col-md-3 p-0">
                         <input class="form-control" id="need_number" type="number" name="need_number" placeholder="0">
                     </div>
@@ -212,9 +217,154 @@
     </div>
 </article>
 
+
+<article>
+    <div id="items_manager">
+        <div>
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-edit"></i> 已发兼职
+                        <div class="card-header-actions">
+                            <a class="card-header-action" href="https://datatables.net" target="_blank">
+                                <small class="text-muted">docs</small>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-striped table-bordered datatable dataTable no-footer"
+                                           id="DataTables_Table_0" role="grid"
+                                           aria-describedby="DataTables_Table_0_info"
+                                           style="border-collapse: collapse !important">
+                                        <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
+                                                rowspan="1" colspan="1" aria-sort="ascending"
+                                                aria-label="Username: activate to sort column descending"
+                                                style="width: 235px;">兼职名
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Date registered: activate to sort column ascending"
+                                                style="width: 201px;">发布时间
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Role: activate to sort column ascending"
+                                                style="width: 88px;">已报人数
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Status: activate to sort column ascending"
+                                                style="width: 98px;">薪资
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Actions: activate to sort column ascending"
+                                                style="width: 209px;">当前状态
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Actions: activate to sort column ascending"
+                                                style="width: 209px;">操作
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                        <!--数据填充-->
+                                        <tr v-for="(item,index) in pageItems">
+                                            <td class="sorting_1">{{item.title}}</td>
+                                            <td>{{item.createTime}}</td>
+                                            <td>
+                                                <span>{{item.count}}</span>
+                                                <span>/</span>
+                                                <span>{{item.needNumber}}</span>
+                                            </td>
+                                            <td>
+                                                <span>{{item.salary}}</span>
+                                                <span>{{item.settlementMethod}}</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="badge badge-primary w-50" v-if="item.status=='进行中'">{{item.status}}</span>
+                                                <span class="badge badge-success w-50" v-if="item.status=='完成'">{{item.status}}</span>
+                                                <span class="badge badge-danger w-50" v-if="item.status=='禁止报名'">{{item.status}}</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-danger p-0 w-50"
+                                                        style="font-size: 0.2em" data-toggle="modal" data-target="#update" v-bind:data-whatever="index" v-if="item.status=='进行中'">禁止报名
+                                                </button>
+                                                <button type="button" class="btn btn-success p-0 w-50"
+                                                        style="font-size: 0.2em" data-toggle="modal" data-target="#update" v-bind:data-whatever="index" v-if="item.status=='完成'">查看
+                                                </button>
+                                                <button type="button" class="btn btn-primary p-0 w-50"
+                                                        style="font-size: 0.2em" data-toggle="modal" data-target="#update" v-bind:data-whatever="index" v-if="item.status=='禁止报名'">完成
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <!--数据填充-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="list">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a class="page-link" v-on:click="previous()" aria-label="Previous">
+                                            <span aria-hidden="true">上一页</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <!--分页-->
+                                    <li class="page-item" v-for="n in pageCount"
+                                        v-bind:class="n==paging.offset+1 ? 'active' : ''">
+                                        <a class="page-link" v-on:click="paging.offset = n-1">{{n}}</a>
+                                    </li>
+                                    <li class="page-item" v-if="isPageMore">
+                                        <a class="page-link" v-on:click="more()">...</a>
+                                    </li>
+                                    <li class="page-item ">
+                                        <a class="page-link" v-on:click="next()" aria-label="Next">
+                                            <span aria-hidden="true">下一页</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
 <footer>
 
 </footer>
+
+<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                确定<span id="status"></span>吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="saveStatus()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal " id="message-modal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel"
@@ -239,6 +389,111 @@
     <!-- /.modal-dialog -->
 </div>
 </body>
+
+<script>
+
+    var ordersVue;
+    var buttonValue;
+    var pagingData = {
+        total: 0,
+        size: 5,
+        offset: 0
+    };
+    var serviceUrl = {
+        list: "/order/ordersList"
+    };
+
+    $.ajax({
+        url : "/order/length",
+        success : function (response) {
+            pagingData.total = response;
+        }
+    });
+
+    var listUrlForCurrentPage = serviceUrl.list + "?offset=" + pagingData.offset + "&size=" + pagingData.size;
+
+    $.ajax({
+        url: listUrlForCurrentPage,
+        success: function (data) {
+            ordersVue = new Vue({
+                el: '#items_manager',
+                data: {
+                    items: data,
+                    paging: pagingData
+                },
+                // methods:{
+                //     updateStatus:function (status) {
+                //         $.ajax({
+                //             url:"",
+                //             type:"POST",
+                //             data:JSON.stringify(status),
+                //             success:function () {
+                //
+                //             }
+                //         })
+                //     }
+                // }
+                computed: {
+                    pageItems: function () {
+                        return this.items.filter(function (value, index) {
+                            return ((index >= pagingData.offset * pagingData.size) && (index < (pagingData.offset + 1) * pagingData.size));
+                        });
+                    },
+                    pageCount: function () {
+                        var pageCount = Math.ceil(this.paging.total / this.paging.size);
+                        return pageCount;
+                    },
+                    isPageMore: function (pageNumber) {
+                        var pageCount = Math.ceil(this.paging.total / this.paging.size);
+                        return pageCount > 10;
+                    }
+                },
+                methods: {
+                    previous: function () {
+                        if (this.paging.offset > 0) {
+                            this.paging.offset -= 1;
+                        }
+                    },
+                    next: function () {
+                        if (this.paging.offset < (this.pageCount - 1)) {
+                            this.paging.offset += 1;
+                        }
+                    },
+                    more: function () {
+
+                    }
+                }
+            });
+            ordersVue.$watch('paging.size', function (newVal, oldVal) {
+
+            });
+            ordersVue.$watch('paging.offset', function (newVal, oldVal) {
+
+            });
+        }
+    })
+
+    $('#update').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        // alert(button.text());// Button that triggered the modal
+        var recipient = button.data('whatever'); // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this);
+        buttonValue=status;
+        modal.find('.modal-title').text("更改进度");
+        $("#status").text(button.text().trim());
+
+        modal.find('.modal-body input').val(recipient)
+    })
+
+    function saveStatus() {
+        // update.updateStatus(buttonValue);
+        $('#update').modal('hide');
+    }
+
+</script>
+
 
 <script>
     function showMessageModal(title, content, typeClass) {
@@ -268,47 +523,51 @@
     }
 
 
-    function submitData(){
-        let title=$("#title").val();
-        let content=$("#content").val();
-        let classification=$("#classification option:selected").text();
-        let settlementMethod=$("#settlement_method option:selected").text();
-        let salary=$("#salary").val();
-        let sex=$("#sex option:selected").text();
-        let place=$("#place").val();
-        let needNumber=$("#need_number").val();
-        let deadline=$("#deadline").val();
+    function submitData() {
+        let title = $("#title").val();
+        let content = $("#content").val();
+        let classification = $("#classification option:selected").text();
+        let settlementMethod = $("#settlement_method option:selected").text();
+        let salary = $("#salary").val();
+        let sex = $("#sex option:selected").text();
+        let place = $("#place").val();
+        let needNumber = $("#need_number").val();
+        let deadline = $("#deadline").val();
         $.ajax({
-            url:'/order/release',
-            type:"POST",
+            url: '/order/release',
+            type: "POST",
             contentType: 'application/json; charset=UTF-8',
-            data:JSON.stringify({
-                title:title,
-                content:content,
-                classification:classification,
-                settlementMethod:settlementMethod,
-                salary:salary,
-                sex:sex,
-                place:place,
-                needNumber:needNumber,
-                deadline:deadline
+            data: JSON.stringify({
+                title: title,
+                content: content,
+                classification: classification,
+                settlementMethod: settlementMethod,
+                salary: salary,
+                sex: sex,
+                place: place,
+                needNumber: needNumber,
+                deadline: deadline
             }),
-            success:function (res) {
-                if(res){
-                    showMessageModal("成功","发布成功","modal-success");
-                } else{
-                    showMessageModal("失败","发布失败","modal-danger");
+            success: function (res) {
+                if (res) {
+                    showMessageModal("成功", "发布成功", "modal-success");
+                } else {
+                    showMessageModal("失败", "发布失败", "modal-danger");
                 }
             }
         })
     }
 
     function main() {
-        window.open("/order/goMain",'_self');
+        window.open("/order/goMain", '_self');
     }
 
     function sign() {
-        window.open("/order/goFirst",'_self');
+        window.open("/order/goFirst", '_self');
+    }
+
+    function history() {
+        window.open("/order/history",'_self');
     }
 </script>
 </html>

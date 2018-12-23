@@ -13,10 +13,4 @@ import java.util.List;
 public interface OrderDetailMapper {
     @Select("select * from orders where id=#{id}")
     Order findOrderById(String id);
-
-    @Select("select * from users where id=#{id}")
-    @Results({
-            @Result(property = "user",column = "employerId",one = @One(select = "com.sixgiants.cpp.mapper.OrderDetailMapper.findOrderById"))
-    })
-    User findEmployerId(String id);
 }

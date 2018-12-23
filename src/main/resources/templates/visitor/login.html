@@ -155,11 +155,9 @@
                success:function (data){
                    console.log(data);
                    window.open("/user/login_action",'_self');
-                   // if (data==""){
-                   //     showMessageModal("失败","用户名或密码错误","modal-danger");
-                   // }else {
-                   //     window.open('/test/login_action','_self');
-                   // }
+               },
+               error:function () {
+                   showMessageModal("失败","用户名或密码错误","modal-danger");
                }
            })
            return ;

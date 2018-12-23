@@ -13,7 +13,6 @@ public class User implements UserDetails {
     private String password;
     private String phone;
     private String email;
-    private String head_icon;
     private String sex;
     private Date createTime;
     private String role;
@@ -97,13 +96,6 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public String getHead_icon() {
-        return head_icon;
-    }
-
-    public void setHead_icon(String head_icon) {
-        this.head_icon = head_icon;
-    }
 
     public String getSex() {
         return sex;

@@ -119,4 +119,8 @@ public class UserServiceImpl {
         userDao.updatePassword(NewUser);
         return NewUser;
     }
+
+    public User findUserById(String employerId){
+        return userDao.findById(employerId);
+    }
 }

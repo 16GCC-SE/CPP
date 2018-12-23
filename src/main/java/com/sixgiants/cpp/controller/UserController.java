@@ -4,10 +4,12 @@ import com.sixgiants.cpp.entity.User;
 import com.sixgiants.cpp.service.impl.UserServiceImpl;
 import com.sixgiants.cpp.util.MD5Util;
 import com.sixgiants.cpp.util.UUIDutil;
+import com.sixgiants.cpp.util.sercury.AjaxAuthFailHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sun.plugin.util.UIUtil;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +43,7 @@ public class UserController {
     private UserServiceImpl userServiceImpl;
 
 
+
     //登录
     @RequestMapping("/login")
     public String Login(){
@@ -48,10 +53,6 @@ public class UserController {
     public String login_action(){
         return "visitor/main1.html";
     }
-//    @RequestMapping("/not_user_login_action")
-//    public String not_user_login_action(){
-//        return "visitor/main1.html";
-//    }
 
 
     @PostMapping("/confirmName")
@@ -89,13 +90,13 @@ public class UserController {
     @PostMapping("/register_form")
     @ResponseBody
     public void register(@RequestPart User user, @RequestPart MultipartFile[] files) throws IOException {
-        Date now = new Date();
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String childDirectory  = df.format(now);
+//        Date now = new Date();
+//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//        String childDirectory  = df.format(now);
 
         String Directory = ResourceUtils.getFile("classpath:static")+"\\\\"+"upload";
         File storeDirectory = new File(Directory);
-        //String p = ResourceUtils.getFile("classpath:static")+"\\\\";
+
         if (!storeDirectory.exists()) {
             storeDirectory.mkdir();
         }
@@ -112,16 +113,6 @@ public class UserController {
     public String register_action(){
         return "visitor/login.html";
     }
-
-//    @GetMapping("/update")
-//    public String toUpdate(Model model){
-//        return userServiceImpl.toUpdate(model);
-//    }
-
-//    @GetMapping("/update_action")
-//    public String updateUser(User user,Model model){
-//        return userServiceImpl.updateUser(user,model);
-//    }
 
 
     @GetMapping("/loginOut")

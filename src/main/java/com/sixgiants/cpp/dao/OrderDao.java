@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 
 @Repository
 public class OrderDao {
@@ -23,8 +24,20 @@ public class OrderDao {
         Authentication authentication = securityContext.getAuthentication();
         User user = (User)authentication.getPrincipal();
         order.setEmployerId(user.getId());
-        order.setStatus(0);
+        order.setStatus("进行中");
         order.setCreateTime(new Date());
         orderMapper.saveOrder(order);
+    }
+
+    public List<Order> getOrdersList(String employerId){
+        return orderMapper.getOrdersList(employerId);
+    }
+
+    public Order findById(String id){
+        return orderMapper.findById(id);
+    }
+
+    public void updateStatus(Order order){
+        orderMapper.updateStatus(order);
     }
 }

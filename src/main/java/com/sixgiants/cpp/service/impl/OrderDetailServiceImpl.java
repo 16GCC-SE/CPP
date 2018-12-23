@@ -20,7 +20,7 @@ public class OrderDetailServiceImpl {
         return order;
     }
 
-    public User findEmployerId(String id){
-        return orderDetailDao.findEmployerId(id);
+    public Order findOrderById(String orderId){
+        return orderDetailDao.findOrderById(orderId);
     }
 }

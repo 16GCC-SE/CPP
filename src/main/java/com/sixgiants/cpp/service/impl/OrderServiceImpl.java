@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class OrderServiceImpl {
@@ -19,4 +20,17 @@ public class OrderServiceImpl {
     public void release(Order order){
         orderDao.saveOrder(order);
     }
+
+    public List<Order> getOrdersList(String employerId){
+        return orderDao.getOrdersList(employerId);
+    }
+
+    public Order findById(String id){
+        return orderDao.findById(id);
+    }
+
+    public void updateStatus(Order order){
+        orderDao.updateStatus(order);
+    }
+
 }

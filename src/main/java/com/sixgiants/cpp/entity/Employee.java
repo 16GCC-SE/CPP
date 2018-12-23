@@ -5,7 +5,7 @@ import java.util.Date;
 public class Employee {
     private String id;
     private String orderId;
-    private Integer status;
+    private String status;
     private String employeeId;
     private Boolean isEnable;
     private Date createTime;
@@ -26,11 +26,11 @@ public class Employee {
         this.orderId = orderId;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

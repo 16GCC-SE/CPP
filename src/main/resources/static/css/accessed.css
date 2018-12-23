@@ -11,7 +11,7 @@ body{
 .table>tbody>tr>td{
     border:none;
     text-align: center;
-    border-bottom: gray solid 1px;
+    border-bottom: 1px solid #c8ced3;
 }
 .table>thead>tr>th{
     text-align: center;
@@ -70,8 +70,8 @@ body{
     width: 100%;
 }
 .form{
-    width:70%;
-    margin-left: 10%;
+    width:100%;
+    /*margin-left: 10%;*/
     display: flex;
     margin-top: 0.5%;
     float: left;

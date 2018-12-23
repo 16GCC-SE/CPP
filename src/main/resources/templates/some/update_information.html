@@ -95,7 +95,7 @@
     </div>
     <div class="header_body">
         <div class="until">
-            <img src="../../image/icon/flag.svg">
+            <img src="../../image/icon/flag.svg" onclick="history()">
         </div>
         <div class="until">
             <img src="../../image/icon/sign.svg" onclick="main()">
@@ -442,6 +442,10 @@
 
     function release() {
         window.open("/order/goRelease",'_self');
+    }
+
+    function history() {
+        window.open("/order/history",'_self');
     }
 
 </script>
