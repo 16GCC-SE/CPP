@@ -48,7 +48,7 @@ CREATE TABLE `orders` (
   `salary` int(255) DEFAULT NULL COMMENT '薪水',
   `place` varchar(255) DEFAULT NULL COMMENT '兼职地点',
   `sex` varchar(255) DEFAULT NULL COMMENT '性别需求',
-  `created_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `settlement_method` varchar(255) DEFAULT NULL COMMENT '结算方式',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
