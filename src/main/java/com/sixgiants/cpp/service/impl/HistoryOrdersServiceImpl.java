@@ -36,6 +36,7 @@ public class HistoryOrdersServiceImpl {
             employee.setCreateTime(java.sql.Date.valueOf(DateFormatUtil.dateFormat(employee.getCreateTime())));
             attSet= new HashMap<String, Object>();
             attSet.put("title", order.getTitle());
+            attSet.put("employeeId", employee.getEmployeeId());
             attSet.put("name", user.getName());
             attSet.put("createTime", employee.getCreateTime());
             attSet.put("salary", order.getSalary());

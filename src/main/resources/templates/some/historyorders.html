@@ -24,10 +24,10 @@
 
 
     /*导航栏样式*/
-    /*@font-face {*/
-    /*font-family: hanzhen;*/
-    /*src: url("static/hanzhen.ttf");*/
-    /*}*/
+    @font-face {
+    font-family: hanzhen;
+        src: url("../../hanzhen.ttf");
+    }
 
     .head {
         width: 100%;
@@ -82,7 +82,6 @@
 
     /*导航栏样式*/
 
-
 </style>
 <body style="background-color: white;display: flex;flex-direction: column;justify-content: center">
 <header class="head">
@@ -95,8 +94,8 @@
             <img src="../../image/icon/flag_select.svg">
             <div style="color: white;font-family: hanzhen">已接兼职</div>
         </div>
-        <div class="until">
-            <img src="../../image/icon/sign.svg" onclick="main()">
+        <div class="until" onclick="main()">
+            <img src="../../image/icon/sign.svg">
         </div>
         <div class="until" onclick="release()">
             <img src="../../image/icon/letter.svg">
@@ -177,7 +176,7 @@
         </ul>
     </div>
 </div>
-<footer class="app-footer">
+<footer class="app-footer" style="margin-top: 200px">
     <div>
         <span>&copy;2015-2018兼职</span>
     </div>
@@ -185,7 +184,7 @@
         <a href="">关于我们&nbsp;&nbsp;&nbsp;&nbsp;</a>
         <a href="">联系我们</a>
     </div>
-    <div class="ml-auto">
+    <div class="">
         <span>京ICP备15058772号</span>
         <a href=""></a>
     </div>
@@ -244,6 +243,7 @@
         var listUrlForCurrentPage = serviceUrl.list + "?offset=" + pagingData.offset + "&size=" + pagingData.size;
         $.getJSON(listUrlForCurrentPage, function (json) {
             employees = json;
+            console.log(employees)
             employeesVue = new Vue({
                 el: '#items-manager',
                 data: {

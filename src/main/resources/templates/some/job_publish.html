@@ -31,10 +31,10 @@
 
 
     /*导航栏样式*/
-    /*@font-face {*/
-    /*font-family: hanzhen;*/
-    /*src: url("static/hanzhen.ttf");*/
-    /*}*/
+    @font-face {
+    font-family: hanzhen;
+        src: url("../../hanzhen.ttf");
+    }
 
     .head {
         width: 100%;
@@ -342,8 +342,18 @@
         </div>
     </div>
 </article>
-<footer>
-
+<footer class="app-footer" style="margin-top: 200px">
+    <div>
+        <span>&copy;2015-2018兼职</span>
+    </div>
+    <div style="margin: 0 auto">
+        <a href="">关于我们&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <a href="">联系我们</a>
+    </div>
+    <div class="">
+        <span>京ICP备15058772号</span>
+        <a href=""></a>
+    </div>
 </footer>
 
 <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -533,6 +543,7 @@
         let place = $("#place").val();
         let needNumber = $("#need_number").val();
         let deadline = $("#deadline").val();
+        // var test={"title":title,"cotent":content,"classification":classification,"settlementMethod":settlementMethod,"salary":salary,"sex":sex,"place":place,"needNumber":needNumber,"deadline":deadline};
         $.ajax({
             url: '/order/release',
             type: "POST",

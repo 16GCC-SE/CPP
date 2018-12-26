@@ -24,7 +24,7 @@
     /*导航栏样式*/
     @font-face {
         font-family: hanzhen;
-        src: url("../../static/hanzhen.ttf");
+        src: url("../../hanzhen.ttf");
     }
 
     .head {
@@ -96,19 +96,19 @@
         <div style="font-family: hanzhen;font-size: 1.5em;color: white">兼职平台</div>
     </div>
     <div class="header_body" style="margin-left: -100px">
-        <div class="until">
-            <img src="../../image/icon/flag.svg" onclick="history()">
+        <div class="until" onclick="history()">
+            <img src="../../image/icon/flag.svg" >
         </div>
         <div class="select_until">
             <img src="../../image/icon/sign_select.svg">
             <div style="color: white;font-family: hanzhen">找兼职</div>
         </div>
-        <div class="until">
-            <img src="../../image/icon/letter.svg" onclick="release()">
+        <div class="until"onclick="release()">
+            <img src="../../image/icon/letter.svg" >
         </div>
     </div>
-    <div class="around">
-        <img src="../../image/icon/my.svg" width="40px" height="40px" onclick="sign()">
+    <div class="around"onclick="sign()">
+        <img src="../../image/icon/my.svg" width="40px" height="40px" >
     </div>
 </header>
 
@@ -156,7 +156,7 @@
         <div class="col-md-4">
             <div CLASS="boss">
                 <div style="text-align: center">
-                    <img th:src="${user.headIcon.substring(36)}" style="width: 150px;height: 150px;">
+                    <img th:src="${user.headIcon.substring(56)}" style="width: 150px;height: 150px;">
                 </div>
                 <div style="padding: 10px;text-align: center">
                     <h4 th:text="${user.name}"></h4>
@@ -167,7 +167,7 @@
         </div>
     </div>
 </div>
-<footer class="app-footer">
+<footer class="app-footer" style="margin-top: 200px">
     <div>
         <span>&copy;2015-2018兼职</span>
     </div>
@@ -175,7 +175,7 @@
         <a href="">关于我们&nbsp;&nbsp;&nbsp;&nbsp;</a>
         <a href="">联系我们</a>
     </div>
-    <div class="ml-auto ">
+    <div class="">
         <span>京ICP备15058772号</span>
         <a href=""></a>
     </div>
@@ -258,25 +258,15 @@
                 }else {
                     $("#get_job").text("领取任务")
                 }
-
                 orderDetailVue = new Vue({
                     el: '#item-manager',
                     data: {
-                        item: orderDetail,
                         isReceive: isReceiveFromResponse
                     }
                 });
             }
         });
     });
-
-
-
-
-
-
-
-
 
     orderDetailVue = new Vue({
         el: '#item-manager',

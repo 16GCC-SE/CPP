@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+登录成功
+<hr/>
+<form action="/test/update" method="get">
+    <table border="1">
+        <tr>
+            <th>用户ID</th>
+            <th>用户姓名</th>
+            <th>用户密码</th>
+            <th>性别</th>
+            <th>用户邮箱</th>
+            <th>手机号码</th>
+            <th>创建日期</th>
+        </tr>
+        <tr th:each="user : ${user}">
+            <td>
+                <input type="text" name="id" th:value="${user.id}">
+            </td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.sex}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.phone}"></td>
+            <td th:text="${user.createTime}"></td>
+        </tr>
+    </table>
+    <input type="submit" value="修改"><a href="/test/loginOut">注销</a>
+</form>
+
+</body>
+</html>

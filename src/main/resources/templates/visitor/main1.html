@@ -25,7 +25,7 @@
     /*导航栏样式*/
     @font-face {
         font-family: hanzhen;
-        src: url("../../static/hanzhen.ttf");
+        src: url("../../hanzhen.ttf");
     }
 
     .head {
@@ -97,19 +97,19 @@
         <div style="font-family: hanzhen;font-size: 1.5em;color: white">兼职平台</div>
     </div>
     <div class="header_body" style="margin-left: -100px">
-        <div class="until">
-            <img src="../../image/icon/flag.svg" onclick="history()">
+        <div class="until"onclick="history()">
+            <img src="../../image/icon/flag.svg" >
         </div>
         <div class="select_until">
             <img src="../../image/icon/sign_select.svg">
             <div style="color: white;font-family: hanzhen">找兼职</div>
         </div>
-        <div class="until">
-            <img src="../../image/icon/letter.svg" onclick="release()">
+        <div class="until"onclick="release()">
+            <img src="../../image/icon/letter.svg" >
         </div>
     </div>
-    <div class="around">
-        <img src="../../image/icon/my.svg" width="40px" height="40px" onclick="sign()">
+    <div class="around"onclick="sign()">
+        <img src="../../image/icon/my.svg" width="40px" height="40px" >
     </div>
 </header>
 
@@ -139,7 +139,8 @@
         <a href="javascript:selectResult('/classification', '其他')">其他 &nbsp;</a>
     </div>
     <!--类型选项-->
-    <div class="Requirement">
+    <div class="Requirement" style="justify-content: space-between">
+        <div>
         <div class="btn-group ml-2">
             <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
@@ -205,6 +206,16 @@
                 <font>最新发布</font>
             </button>
         </div>
+        </div>
+
+
+
+
+        <div class="btn-group ml-2">
+            <button class="btn btn-sm btn-secondary" type="button" onclick="reset()">
+                <font>初始化</font>
+            </button>
+        </div>
     </div>
     <!--第五个下拉-->
     <div class="task">
@@ -224,7 +235,22 @@
                 </tbody>
             </table>
         </div>
-        <div class="RightPublicity"></div>
+        <div class="RightPublicity p-4" style="display: flex;flex-direction: column;align-items: center">
+            <span style="color: gray; font-size:20px ">校园兼职简介</span>
+            <div class="p-3" style="border-bottom: 1px gray solid">
+                <div style="font-size: 18px">一个真实可靠的兼职平台</div>
+                <div style="color: gray">兼职信息经过多重核查，更加真实可靠。</div>
+            </div>
+            <div class="p-3" style="border-bottom: 1px gray solid">
+                <div style="font-size: 18px">给学生提供靠谱的兼职</div>
+                <div style="color: gray">来校园兼职发布优质的兼职，让高质的学生投身于你们的工作之中。</div>
+            </div>
+            <div class="p-3" style="border-bottom: 1px gray solid">
+                <div style="font-size: 18px">一起来颠覆兼职招聘行业</div>
+                <div style="color: gray">我们希望未来能够为每一位同学都买一份保险</div>
+            </div>
+            <hr/>
+        </div>
     </div>
     <div class="list p-5" >
         <ul class="pagination">
@@ -379,7 +405,7 @@
         <!--</ul>-->
     <!--</div>-->
 </article>
-<footer class="app-footer">
+<footer class="app-footer" style="margin-top: 200px">
     <div>
         <span>&copy;2015-2018兼职</span>
     </div>
@@ -387,7 +413,7 @@
         <a href="">关于我们&nbsp;&nbsp;&nbsp;&nbsp;</a>
         <a href="">联系我们</a>
     </div>
-    <div class="ml-auto">
+    <div class="">
         <span>京ICP备15058772号</span>
         <a href=""></a>
     </div>
@@ -412,21 +438,25 @@
     var serviceUrl = {
         list: "/orders"
     };
-    var selectResult = function (requestUrl, param) {
+    function selectResult(requestUrl, param,object) {
+        if(object!=null){
+        var txt=object.innerText;
+        $(object).parent('div').parent('button').children(":first").text(txt);
+        }
         $.ajax({
-            url : requestUrl,
+            url: requestUrl,
             type: 'POST',
-            data :param,
-            contentType:"application/json;charset=UTF-8",
+            data: param,
+            contentType: "application/json;charset=UTF-8",
             dataType: "json",
-            success : function (response) {
+            success: function (response) {
                 orders.splice(0, orders.length);
                 for (var i = 0; i < response.length; i++) {
                     orders.push(response[i]);
                 }
             }
         });
-    };
+    }
 
     // function UserDetail(index){
     //     rowIndex = index;
@@ -442,6 +472,10 @@
     //         }
     //     });
     // }
+
+    function reset() {
+        location.reload(true);
+    }
 
     function jumpOrderDetail(index) {
         rowIndex = index;
